@@ -4,23 +4,25 @@ using UnityEngine;
 
 namespace Z
 {
-    public class TempMovement : MonoBehaviour {
+    public class AIControl : MonoBehaviour {
+        public Rigidbody Rig;
+        public float Speed;
+        [Space]
+        public GameObject Pivot;
+        public GameObject RotationPivot;
+        public float RotationSpeed;
+        public bool RotationFinished;
+        [HideInInspector]
+        public bool SubRotationFinished;
+        [Space]
         public GameObject PresetTarget;
         public Vector3 MoveTarget;
+        [Space]
         public PathObstacle CurrentObstacle;
         public PathObstaclePoint CurrentObstaclePoint;
         public Vector3 CurrentPointPosition;
         public float RayCastDistance = 10f;
         public LayerMask PathfindingRayLayer;
-        [Space]
-        public Rigidbody Rig;
-        public GameObject RotationPivot;
-        public float Speed;
-
-        public void Awake()
-        {
-
-        }
 
         // Start is called before the first frame update
         void Start()
@@ -31,6 +33,28 @@ namespace Z
         // Update is called once per frame
         void Update()
         {
+            if (RotationPivot && !RotationFinished)
+            {
+                float T = PathObstacle.AbsAngle(RotationPivot.transform.eulerAngles.y);
+                float O = PathObstacle.AbsAngle(Pivot.transform.eulerAngles.y);
+                if (Mathf.Abs(T - O) <= RotationSpeed * Time.deltaTime
+                    || Mathf.Abs(T + 360 - O) <= RotationSpeed * Time.deltaTime
+                    || Mathf.Abs(T - O - 360) <= RotationSpeed * Time.deltaTime)
+                {
+                    RotationFinished = true;
+                    Pivot.transform.eulerAngles = RotationPivot.transform.eulerAngles;
+                    SubRotationFinished = true;
+                }
+                else
+                {
+                    float a = O;
+                    a += PathObstacle.RotateDirection(O, T) * RotationSpeed * Time.deltaTime;
+                    Vector3 b = Pivot.transform.eulerAngles;
+                    Pivot.transform.eulerAngles = new Vector3(b.x, a, b.z);
+                    SubRotationFinished = false;
+                }
+            }
+
             Vector3 MT = MoveTarget;
             if (PresetTarget)
                 MT = PresetTarget.transform.position;
@@ -59,9 +83,13 @@ namespace Z
                     MT = new Vector3(CurrentPointPosition.x, GetPosition().y, CurrentPointPosition.z);
             }
 
-            SetDirection(MT);
-
-            Rig.velocity = RotationPivot.transform.forward * Speed;
+            if (PathObstacle.GetDistance(GetPosition(), MT) <= 0.1f)
+                SetSpeed(new Vector3());
+            else
+            {
+                SetDirection(MT - GetPosition());
+                SetSpeed(MT - GetPosition());
+            }
         }
 
         public void SetObstacle(PathObstacle PO, Vector3 ContactPoint, Vector3 MoveTargetPosition)
@@ -87,7 +115,13 @@ namespace Z
 
         public void SetDirection(Vector3 Target)
         {
-            RotationPivot.transform.forward = Target - RotationPivot.transform.position;
+            RotationFinished = false;
+            RotationPivot.transform.forward = Target;
+        }
+
+        public void SetSpeed(Vector3 Value)
+        {
+            Rig.velocity = Value.normalized * GetSpeed();
         }
 
         public Vector3 GetPosition()

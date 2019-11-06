@@ -168,5 +168,38 @@ namespace Z
         {
             return Mathf.Abs((A - B).magnitude);
         }
+
+        public static float AbsAngle(float OriAngle)
+        {
+            if (OriAngle < 0)
+                return OriAngle + 360;
+            else if (OriAngle >= 360)
+                return OriAngle - 360;
+            else
+                return OriAngle;
+        }
+
+        public static int RotateDirection(float RotateAngle, float TargetAngle)
+        {
+            if (TargetAngle > RotateAngle)
+            {
+                float a = TargetAngle - RotateAngle;
+                float b = RotateAngle + 360 - TargetAngle;
+                if (a >= b)
+                    return -1;
+                else
+                    return 1;
+            }
+            else if (TargetAngle < RotateAngle)
+            {
+                float a = RotateAngle - TargetAngle;
+                float b = TargetAngle + 360 - RotateAngle;
+                if (a > b)
+                    return 1;
+                else
+                    return -1;
+            }
+            return 0;
+        }
     }
 }
