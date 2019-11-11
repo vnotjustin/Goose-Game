@@ -15,14 +15,16 @@ namespace Z
         [HideInInspector]
         public bool SubRotationFinished;
         [Space]
-        public GameObject PresetTarget;
-        public Vector3 MoveTarget;
-        [Space]
         public PathObstacle CurrentObstacle;
         public PathObstaclePoint CurrentObstaclePoint;
         public Vector3 CurrentPointPosition;
         public float RayCastDistance = 10f;
         public LayerMask PathfindingRayLayer;
+        [Space]
+        public GameObject PresetTarget;
+        public Vector3 MoveTarget;
+        public ActualObject CurrentObject;
+        public float CurrentDelay;
 
         // Start is called before the first frame update
         void Start()
@@ -55,6 +57,13 @@ namespace Z
                 }
             }
 
+            if (CurrentDelay > 0)
+            {
+                CurrentDelay -= Time.deltaTime;
+                SetSpeed(new Vector3());
+                return;
+            }
+
             Vector3 MT = MoveTarget;
             if (PresetTarget)
                 MT = PresetTarget.transform.position;
@@ -84,12 +93,39 @@ namespace Z
             }
 
             if (PathObstacle.GetDistance(GetPosition(), MT) <= 0.1f)
+            {
                 SetSpeed(new Vector3());
+                ReachMoveTarget();
+            }
             else
             {
                 SetDirection(MT - GetPosition());
                 SetSpeed(MT - GetPosition());
             }
+        }
+
+        public void ReachMoveTarget()
+        {
+            if (CurrentObject)
+            {
+                SetDelay(CurrentObject.PutDownDelay);
+            }
+        }
+
+        public void PickUpObject(ActualObject AO)
+        {
+            CurrentObject = AO;
+            SetMoveTarget(AO.OriPosition);
+        }
+
+        public void SetMoveTarget(Vector3 Value)
+        {
+            MoveTarget = new Vector3(Value.x, GetPosition().y, Value.z);
+        }
+
+        public void SetDelay(float Value)
+        {
+            CurrentDelay = Value;
         }
 
         public void SetObstacle(PathObstacle PO, Vector3 ContactPoint, Vector3 MoveTargetPosition)
