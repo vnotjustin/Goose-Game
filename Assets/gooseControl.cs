@@ -42,9 +42,9 @@ public class gooseControl : MonoBehaviour
                 targetPos = mouseHit.point;
                 targetPos.y = defaultY;
                 
-                //Vector3 mDir = mouseHit.point - transform.position;
-                //Quaternion mRot = Quaternion.LookRotation(mDir);
-                //transform.rotation = Quaternion.Slerp(transform.rotation, mRot, 2 * Time.deltaTime);
+                Vector3 mDir = mouseHit.point - transform.position;
+                Quaternion mRot = Quaternion.LookRotation(mDir);
+                transform.rotation = Quaternion.Slerp(transform.rotation, mRot, 2 * Time.deltaTime);
             }
 
             if ((Vector3)transform.position != targetPos)
