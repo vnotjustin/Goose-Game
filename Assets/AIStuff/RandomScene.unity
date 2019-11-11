@@ -659,8 +659,6 @@ MonoBehaviour:
   RotationSpeed: 500
   RotationFinished: 1
   SubRotationFinished: 0
-  PresetTarget: {fileID: 1149777291}
-  MoveTarget: {x: 0, y: 0, z: 0}
   CurrentObstacle: {fileID: 0}
   CurrentObstaclePoint: {fileID: 0}
   CurrentPointPosition: {x: 0, y: 0, z: 0}
@@ -668,6 +666,10 @@ MonoBehaviour:
   PathfindingRayLayer:
     serializedVersion: 2
     m_Bits: 256
+  PresetTarget: {fileID: 1149777291}
+  MoveTarget: {x: 0, y: 0, z: 0}
+  CurrentObject: {fileID: 0}
+  CurrentDelay: 0
 --- !u!1 &309551681
 GameObject:
   m_ObjectHideFlags: 0
