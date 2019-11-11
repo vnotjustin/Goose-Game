@@ -22,19 +22,19 @@ public class FollowGoose : MonoBehaviour
         if (Input.GetKey(KeyCode.Z))
         {
             DoLerp();
-            maincam.orthographicSize = (int)Mathf.Lerp(maincam.orthographicSize, 3, lerp); ;
+            maincam.orthographicSize = (float)Mathf.Lerp(maincam.orthographicSize, 3, lerp); ;
         }
 
         else if (Input.GetKey(KeyCode.X))
         {
             DoLerp();
-            maincam.orthographicSize = (int)Mathf.Lerp(maincam.orthographicSize, 8, lerp); ;
+            maincam.orthographicSize = (float)Mathf.Lerp(maincam.orthographicSize, 8, lerp); ;
         }
 
         else
         {
             DoLerp();
-            maincam.orthographicSize = (int)Mathf.Lerp(maincam.orthographicSize, 5, lerp); ;
+            maincam.orthographicSize = (float)Mathf.Lerp(maincam.orthographicSize, 5, lerp); ;
         }
     }
 
