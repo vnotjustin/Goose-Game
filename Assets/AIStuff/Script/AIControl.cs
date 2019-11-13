@@ -5,6 +5,8 @@ using UnityEngine;
 namespace Z
 {
     public class AIControl : MonoBehaviour {
+        [HideInInspector]
+        public static AIControl Main;
         public Rigidbody Rig;
         public float Speed;
         [Space]
@@ -25,6 +27,11 @@ namespace Z
         public Vector3 MoveTarget;
         public ActualObject CurrentObject;
         public float CurrentDelay;
+
+        public void Awake()
+        {
+            Main = this;
+        }
 
         // Start is called before the first frame update
         void Start()
@@ -126,6 +133,11 @@ namespace Z
         public void SetDelay(float Value)
         {
             CurrentDelay = Value;
+        }
+
+        public void Heard(string Key)
+        {
+
         }
 
         public void SetObstacle(PathObstacle PO, Vector3 ContactPoint, Vector3 MoveTargetPosition)
