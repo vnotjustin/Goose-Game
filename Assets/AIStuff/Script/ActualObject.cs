@@ -2,30 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Z
+public class ActualObject : MonoBehaviour
 {
-    public class ActualObject : MonoBehaviour {
-        public bool Messed;
-        public Vector3 OriPosition;
-        [Space]
-        public float PickUpDelay;
-        public float PutDownDelay;
+    public bool Messed;
+    public Vector3 OriPosition;
+    [Space]
+    public float PickUpDelay;
+    public float PutDownDelay;
 
-        // Start is called before the first frame update
-        void Start()
-        {
+    // Start is called before the first frame update
+    void Start()
+    {
 
-        }
+    }
 
-        // Update is called once per frame
-        void Update()
-        {
+    // Update is called once per frame
+    void Update()
+    {
 
-        }
+    }
 
-        public Vector3 GetMovePosition()
-        {
-            return OriPosition;
-        }
+    public Vector3 GetMovePosition()
+    {
+        return OriPosition;
     }
 }

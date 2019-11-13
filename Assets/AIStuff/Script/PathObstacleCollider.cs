@@ -2,21 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Z
+public class PathObstacleCollider : MonoBehaviour
 {
-    public class PathObstacleCollider : MonoBehaviour {
-        public PathObstacle Obstacle;
+    public PathObstacle Obstacle;
 
-        // Start is called before the first frame update
-        void Start()
-        {
+    // Start is called before the first frame update
+    void Start()
+    {
 
-        }
+    }
 
-        // Update is called once per frame
-        void Update()
-        {
+    // Update is called once per frame
+    void Update()
+    {
 
-        }
     }
 }
