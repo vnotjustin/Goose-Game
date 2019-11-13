@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class gooseControl : MonoBehaviour
 {
+    public bool inRange = false;
     public static GameObject goose;
     public Camera cam;
     public Texture2D cursorTexture;
@@ -84,7 +85,7 @@ public class gooseControl : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             honk.Play();
-            if(SoundDetect.inRange == true)
+            if(inRange == true)
             {
                 ai.Heard("goose");
             }
@@ -93,5 +94,16 @@ public class gooseControl : MonoBehaviour
 
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        inRange = true;
+        Debug.Log(inRange);
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        inRange = false;
+        Debug.Log(inRange);
+    }
 
 }
