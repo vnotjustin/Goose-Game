@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Z
-{
+
     public class AIControl : MonoBehaviour {
         [HideInInspector]
         public static AIControl Main;
@@ -27,6 +26,7 @@ namespace Z
         public Vector3 MoveTarget;
         public ActualObject CurrentObject;
         public float CurrentDelay;
+        
 
         public void Awake()
         {
@@ -137,7 +137,8 @@ namespace Z
 
         public void Heard(string Key)
         {
-
+        Debug.Log(Key);
+        PresetTarget = gooseControl.goose;
         }
 
         public void SetObstacle(PathObstacle PO, Vector3 ContactPoint, Vector3 MoveTargetPosition)
@@ -182,11 +183,3 @@ namespace Z
             return Speed;
         }
     }
-
-    public enum DefenceType
-    {
-        Empty,
-        Light,
-        Heavy
-    }
-}

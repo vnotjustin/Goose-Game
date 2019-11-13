@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Z
-{
+
     public class PathObstacleCollider : MonoBehaviour {
         public PathObstacle Obstacle;
 
@@ -19,4 +18,3 @@ namespace Z
 
         }
     }
-}

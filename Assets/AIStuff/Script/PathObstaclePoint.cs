@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Z
-{
+
     public class PathObstaclePoint : MonoBehaviour {
         public PathObstacle PO;
         public int Index;
@@ -34,4 +33,3 @@ namespace Z
             return transform.position + new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f)).normalized * Random.Range(0, MaxRadius);
         }
     }
-}

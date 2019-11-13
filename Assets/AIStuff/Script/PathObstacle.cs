@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Z
-{
+
     public class PathObstacle : MonoBehaviour {
         public List<PathObstaclePoint> Points;
 
@@ -202,4 +201,3 @@ namespace Z
             return 0;
         }
     }
-}

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class gooseControl : MonoBehaviour
 {
+    public static GameObject goose;
     public Camera cam;
     public Texture2D cursorTexture;
     public CursorMode cursorMode = CursorMode.Auto;
@@ -11,6 +12,9 @@ public class gooseControl : MonoBehaviour
     private float defaultY = .5f;
     public float movespeed;
     public GameObject neck;
+    public AudioSource honk;
+    private bool inRange;
+    private AIControl ai;
 
     private Vector3 targetPos;
     public Transform target;
@@ -20,9 +24,11 @@ public class gooseControl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        ai = GetComponent<AIControl>();
         targetPos = transform.position;
         Cursor.visible = true;
         Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
+        
         //neckD.rotation = Quaternion.Euler(110, 0, 0);
         //neckU.rotation = Quaternion.Euler(30, 0, 0);
     }
@@ -75,5 +81,25 @@ public class gooseControl : MonoBehaviour
             neck.transform.rotation = Quaternion.Lerp(neck.transform.rotation, Quaternion.Euler(30, 0, 0), Time.deltaTime * 3);
         }
 
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            honk.Play();
+            if(inRange == true)
+            {
+                ai.Heard("goose");
+            }
+
+        }
+
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        inRange = true;
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        inRange = false;
     }
 }

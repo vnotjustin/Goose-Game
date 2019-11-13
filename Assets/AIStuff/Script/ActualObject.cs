@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Z
-{
+
     public class ActualObject : MonoBehaviour {
         public bool Messed;
         public Vector3 OriPosition;
@@ -28,4 +27,3 @@ namespace Z
             return OriPosition;
         }
     }
-}
