@@ -6,7 +6,6 @@ public class FollowGoose : MonoBehaviour
 {
     public Camera maincam;
     public Transform goose;
-    private float lerp;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,25 +20,19 @@ public class FollowGoose : MonoBehaviour
 
         if (Input.GetKey(KeyCode.Z))
         {
-            DoLerp();
-            maincam.orthographicSize = (float)Mathf.Lerp(maincam.orthographicSize, 3, lerp); ;
+            maincam.orthographicSize = (float)Mathf.Lerp(maincam.orthographicSize, 3, Time.deltaTime * 2); ;
         }
 
         else if (Input.GetKey(KeyCode.X))
         {
-            DoLerp();
-            maincam.orthographicSize = (float)Mathf.Lerp(maincam.orthographicSize, 8, lerp); ;
+            maincam.orthographicSize = (float)Mathf.Lerp(maincam.orthographicSize, 8, Time.deltaTime * 2); ;
         }
 
         else
         {
-            DoLerp();
-            maincam.orthographicSize = (float)Mathf.Lerp(maincam.orthographicSize, 5, lerp); ;
+            maincam.orthographicSize = (float)Mathf.Lerp(maincam.orthographicSize, 5, Time.deltaTime * 2); ;
         }
     }
 
-    public void DoLerp()
-    {
-        lerp += Time.deltaTime * 2;
-    }
+
 }

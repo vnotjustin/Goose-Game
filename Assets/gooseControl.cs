@@ -13,7 +13,6 @@ public class gooseControl : MonoBehaviour
     public float movespeed;
     public GameObject neck;
     public AudioSource honk;
-    private bool inRange;
     private AIControl ai;
 
     private Vector3 targetPos;
@@ -24,7 +23,8 @@ public class gooseControl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ai = GetComponent<AIControl>();
+        goose = this.gameObject;
+        ai = AIControl.Main;
         targetPos = transform.position;
         Cursor.visible = true;
         Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
@@ -84,7 +84,7 @@ public class gooseControl : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             honk.Play();
-            if(inRange == true)
+            if(SoundDetect.inRange == true)
             {
                 ai.Heard("goose");
             }
@@ -93,13 +93,5 @@ public class gooseControl : MonoBehaviour
 
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        inRange = true;
-    }
 
-    private void OnTriggerExit(Collider other)
-    {
-        inRange = false;
-    }
 }
