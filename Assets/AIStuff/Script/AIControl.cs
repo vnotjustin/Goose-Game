@@ -32,6 +32,7 @@ public class AIControl : MonoBehaviour
     public ActualObject CurrentObject;
     public float CurrentDelay;
 
+    public GameObject prevGM;
     public void Awake()
     {
         Main = this;
@@ -107,6 +108,7 @@ public class AIControl : MonoBehaviour
 
     public void Heard(string Key)
     {
+        prevGM = PresetTarget;
         Debug.Log(Key);
         PresetTarget = gooseControl.goose;
     }
