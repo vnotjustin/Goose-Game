@@ -17,6 +17,7 @@ public class FollowGoose : MonoBehaviour
     {
 
         maincam.transform.position = new Vector3(goose.position.x - 11, 16, goose.position.z - 11);
+        /*
 
         if (Input.GetKey(KeyCode.Z))
         {
@@ -31,7 +32,7 @@ public class FollowGoose : MonoBehaviour
         else
         {
             maincam.orthographicSize = (float)Mathf.Lerp(maincam.orthographicSize, 5, Time.deltaTime * 2); ;
-        }
+        }*/
     }
 
 

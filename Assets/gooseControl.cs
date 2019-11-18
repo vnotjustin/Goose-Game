@@ -21,6 +21,9 @@ public class gooseControl : MonoBehaviour
     private Transform neckU;
     private Transform neckD;
 
+    public GameObject Mark;
+    public LayerMask Mask;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -44,11 +47,12 @@ public class gooseControl : MonoBehaviour
 
         if (Input.GetMouseButton(0))
         {
-            if (Physics.Raycast(mouseRay, out mouseHit, rcDist))
+            if (Physics.Raycast(mouseRay, out mouseHit, rcDist, Mask))
             {
                 targetPos = mouseHit.point;
                 targetPos.y = defaultY;
-                
+                Mark.transform.position = targetPos;
+
                 Vector3 mDir = mouseHit.point - transform.position;
                 Quaternion mRot = Quaternion.LookRotation(mDir);
                 transform.rotation = Quaternion.Slerp(transform.rotation, mRot, 2 * Time.deltaTime);
@@ -85,7 +89,7 @@ public class gooseControl : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             honk.Play();
-            if(inRange == true)
+            if (inRange == true)
             {
                 ai.Heard("goose");
             }
@@ -96,12 +100,16 @@ public class gooseControl : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (!other.GetComponent<AIControl>())
+            return;
         inRange = true;
         Debug.Log(inRange);
     }
 
     private void OnTriggerExit(Collider other)
     {
+        if (!other.GetComponent<AIControl>())
+            return;
         inRange = false;
         Debug.Log(inRange);
     }
