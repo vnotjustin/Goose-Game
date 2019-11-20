@@ -15,6 +15,7 @@ public class gooseControl : MonoBehaviour
 
     private Vector3 targetPos;
     public Transform target;
+    public LayerMask ground;
 
     // Start is called before the first frame update
     void Start()
@@ -38,7 +39,7 @@ public class gooseControl : MonoBehaviour
 
         if (Input.GetMouseButton(0))
         {
-            if (Physics.Raycast(mouseRay, out mouseHit, rcDist))
+            if (Physics.Raycast(mouseRay, out mouseHit, rcDist, ground))
             {
                 targetPos = mouseHit.point;
                 targetPos.y = defaultY;
