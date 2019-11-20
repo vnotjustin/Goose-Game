@@ -151,7 +151,9 @@ public class AIControl : MonoBehaviour {
     public void Heard(string Key)
     {
         if (CurrentWork != GooseWork)
+        {
             SetWork(GooseWork);
+        }
     }
 
     public void SetWork(AIWork Work)

@@ -28,7 +28,7 @@ public class gooseDetect : MonoBehaviour
 
         if (!inRange)
         {
-            AIControl.Main.PresetTarget = AIControl.Main.prevGM;
+           
         }
     }
 

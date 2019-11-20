@@ -2466,19 +2466,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1feec58d478682449ec845b20a9717d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inRange: 0
   cam: {fileID: 1446207807}
   cursorTexture: {fileID: 2800000, guid: 56f6bd10c8695bb47a09c9c990fbe9fb, type: 3}
   cursorMode: 0
   hotSpot: {x: 0, y: 0}
   movespeed: 4
   neck: {fileID: 5285964}
-  honk: {fileID: 1131843281}
   target: {fileID: 1131843286}
-  Mark: {fileID: 1153839500}
-  Mask:
+  ground:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 0
 --- !u!65 &1131843283
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2586,19 +2583,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1feec58d478682449ec845b20a9717d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inRange: 0
-  cam: {fileID: 0}
+  cam: {fileID: 1446207807}
   cursorTexture: {fileID: 2800000, guid: 56f6bd10c8695bb47a09c9c990fbe9fb, type: 3}
   cursorMode: 0
   hotSpot: {x: 0, y: 0}
   movespeed: 4
   neck: {fileID: 931020167}
-  honk: {fileID: 0}
   target: {fileID: 1149777296}
-  Mark: {fileID: 0}
-  Mask:
+  ground:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 512
 --- !u!65 &1149777293
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3255,7 +3249,7 @@ GameObject:
   - component: {fileID: 1438863038}
   - component: {fileID: 1438863037}
   - component: {fileID: 1438863036}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
