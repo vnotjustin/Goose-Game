@@ -324,12 +324,23 @@ public class AIControl : MonoBehaviour {
 
     public void SetSwitchAnim(string Key, bool Value)
     {
+        if (Key == "")
+            return;
         Anim.SetBool(Key, Value);
     }
 
     public void SetInstantAnim(string Key)
     {
-        Anim.SetTrigger(Key);
+        if (Key == "")
+            return;
+        StartCoroutine(SetInstantAnimIE(Key));
+    }
+
+    public IEnumerator SetInstantAnimIE(string Key)
+    {
+        Anim.SetBool(Key, true);
+        yield return new WaitForSeconds(0.25f);
+        Anim.SetBool(Key, false);
     }
 
     public Vector3 GetPosition()
