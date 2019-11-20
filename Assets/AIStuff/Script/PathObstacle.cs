@@ -200,4 +200,27 @@ public class PathObstacle : MonoBehaviour
         }
         return 0;
     }
+
+    public static float RotationDistance(float RotateAngle, float TargetAngle)
+    {
+        if (TargetAngle > RotateAngle)
+        {
+            float a = TargetAngle - RotateAngle;
+            float b = RotateAngle + 360 - TargetAngle;
+            if (a >= b)
+                return b;
+            else
+                return a;
+        }
+        else if (TargetAngle < RotateAngle)
+        {
+            float a = RotateAngle - TargetAngle;
+            float b = TargetAngle + 360 - RotateAngle;
+            if (a > b)
+                return b;
+            else
+                return a;
+        }
+        return 0;
+    }
 }
