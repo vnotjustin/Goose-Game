@@ -48,7 +48,7 @@ public class gooseControl : MonoBehaviour
                 
                 Vector3 mDir = mouseHit.point - transform.position;
                 Quaternion mRot = Quaternion.LookRotation(mDir);
-                transform.rotation = Quaternion.Slerp(transform.rotation, mRot, 2 * Time.deltaTime);
+                transform.rotation = Quaternion.Slerp(transform.rotation, mRot, 4 * Time.deltaTime);
             }
 
             if ((Vector3)transform.position != targetPos)
@@ -79,12 +79,11 @@ public class gooseControl : MonoBehaviour
 
         if (Input.GetKey(KeyCode.Q))
         {
-            Debug.Log("PRESSING");
-            neck.transform.rotation = Quaternion.Lerp(neck.transform.rotation, Quaternion.Euler(110, 0, 0), Time.deltaTime * 3);
+            m_Animator.SetBool("isBend", true);
         }
         else
         {
-            neck.transform.rotation = Quaternion.Lerp(neck.transform.rotation, Quaternion.Euler(30, 0, 0), Time.deltaTime * 3);
+            m_Animator.SetBool("isBend", false);
         }
 
         
