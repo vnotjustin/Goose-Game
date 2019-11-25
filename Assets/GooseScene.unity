@@ -1579,18 +1579,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f71cd19afd5f55749ad02b827fb72d4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PresetTarget: {fileID: 1317898855}
-  MoveTarget: {x: 0, y: 0, z: 0}
-  CurrentObstacle: {fileID: 0}
-  CurrentObstaclePoint: {fileID: 0}
-  CurrentPointPosition: {x: 0, y: 0, z: 0}
-  RayCastDistance: 5
-  PathfindingRayLayer:
-    serializedVersion: 2
-    m_Bits: 256
-  Rig: {fileID: 858410856}
-  RotationPivot: {fileID: 1396165948}
-  Speed: 2
 --- !u!4 &858410858
 Transform:
   m_ObjectHideFlags: 0
@@ -2940,12 +2928,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1feec58d478682449ec845b20a9717d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inRange: 0
   cam: {fileID: 49878342}
   cursorTexture: {fileID: 2800000, guid: 56f6bd10c8695bb47a09c9c990fbe9fb, type: 3}
   cursorMode: 0
   hotSpot: {x: 0, y: 0}
   movespeed: 4
   neck: {fileID: 1143468207}
+  honk: {fileID: 0}
   target: {fileID: 1317898859}
 --- !u!1 &1331586074
 GameObject:
