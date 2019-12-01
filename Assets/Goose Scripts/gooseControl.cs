@@ -16,6 +16,7 @@ public class gooseControl : MonoBehaviour
     private Vector3 targetPos;
     public Transform target;
     public LayerMask ground;
+    public static bool isBend;
 
     // Start is called before the first frame update
     void Start()
@@ -80,15 +81,16 @@ public class gooseControl : MonoBehaviour
         if (Input.GetKey(KeyCode.Q))
         {
             m_Animator.SetBool("isBend", true);
+            isBend = true;
         }
-        else
+        if (Input.GetKeyUp(KeyCode.Q))
         {
             m_Animator.SetBool("isBend", false);
+            isBend = false;
         }
 
-        
-
     }
+
 
 
 
