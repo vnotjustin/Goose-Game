@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class AIWork : MonoBehaviour {
     public AIDestination Destination;
+    public Item TargetItem;
     [Space]
     public float StartDelay;
     public string StartAnim;
@@ -15,6 +16,9 @@ public class AIWork : MonoBehaviour {
     [Space]
     public float EndDelay;
     public string EndAnim;
+    public bool EndRotationLock;
+    [Space]
+    public AIWork NextWork;
 
     // Start is called before the first frame update
     public virtual void Start()
@@ -35,7 +39,8 @@ public class AIWork : MonoBehaviour {
 
     public virtual void OnEnd()
     {
-
+        if (NextWork)
+            AIControl.Main.SetWork(NextWork);
     }
 
     public virtual Vector3 GetTargetPosition()
