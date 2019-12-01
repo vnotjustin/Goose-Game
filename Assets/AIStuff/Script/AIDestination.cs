@@ -6,18 +6,18 @@ public class AIDestination : MonoBehaviour {
     public GameObject TargetPoint;
 
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
         
     }
 
     // Update is called once per frame
-    void Update()
+    public void Update()
     {
         
     }
 
-    public Vector3 GetTargetPosition()
+    public virtual Vector3 GetTargetPosition()
     {
         if (TargetPoint)
             return TargetPoint.transform.position;

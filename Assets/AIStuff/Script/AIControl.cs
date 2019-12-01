@@ -32,7 +32,6 @@ public class AIControl : MonoBehaviour {
     public Vector3 MoveTarget;
     [HideInInspector]
     public Vector3 MT;
-    public ActualObject CurrentObject;
     public float CurrentDelay;
     public bool Delaying;
     [Space]
@@ -40,11 +39,18 @@ public class AIControl : MonoBehaviour {
     public AIWork GooseWork;
     public AIWork CurrentWork;
     public AIWorkState CurrentWorkState;
+    [Space]
+    public GameObject HandlePoint;
+    public Item CurrentItem;
+    [Space]
+    public AIAnimSwitch Switch;
 
     public void Awake()
     {
         Main = this;
         Path = new NavMeshPath();
+        StartCoroutine("PickUpSwitchProcess");
+        StartCoroutine("ResetSwitchProcess");
     }
 
     // Start is called before the first frame update
@@ -132,12 +138,6 @@ public class AIControl : MonoBehaviour {
         }
     }
 
-    public void PickUpObject(ActualObject AO)
-    {
-        CurrentObject = AO;
-        SetMoveTarget(AO.OriPosition);
-    }
-
     public void SetMoveTarget(Vector3 Value)
     {
         MoveTarget = new Vector3(Value.x, GetPosition().y, Value.z);
@@ -146,6 +146,8 @@ public class AIControl : MonoBehaviour {
     public void SetDelay(float Value)
     {
         CurrentDelay = Value;
+        if (Value > 0)
+            Delaying = true;
     }
 
     public void Heard(string Key)
@@ -211,12 +213,30 @@ public class AIControl : MonoBehaviour {
         }
         else if (Value == AIWorkState.End && CurrentWork.EndDelay > 0)
         {
-            //RotationDisable = true;
+            RotationDisable = CurrentWork.EndRotationLock;
             SetDelay(CurrentWork.EndDelay);
             SetInstantAnim(CurrentWork.EndAnim);
         }
         else
             NextStep();
+    }
+
+    public void PickUpItem(Item I)
+    {
+        CurrentItem = I;
+        I.OnPickUp();
+    }
+
+    public void DropItem(bool Reset)
+    {
+        if (!CurrentItem)
+            return;
+
+        if (Reset)
+            CurrentItem.ItemReset();
+        else
+            CurrentItem.ItemDrop();
+        CurrentItem = null;
     }
 
     public void PathFindingUpdate()
@@ -341,6 +361,32 @@ public class AIControl : MonoBehaviour {
         Anim.SetBool(Key, true);
         yield return new WaitForSeconds(0.25f);
         Anim.SetBool(Key, false);
+    }
+
+    public IEnumerator ResetSwitchProcess()
+    {
+        while (true)
+        {
+            if (Switch.ResetSwitch && CurrentItem)
+            {
+                DropItem(true);
+                yield return new WaitForSeconds(0.1f);
+            }
+            yield return 0;
+        }
+    }
+
+    public IEnumerator PickUpSwitchProcess()
+    {
+        while (true)
+        {
+            if (Switch.PickUpSwitch && CurrentWork && CurrentWork.TargetItem)
+            {
+                PickUpItem(CurrentWork.TargetItem);
+                yield return new WaitForSeconds(0.1f);
+            }
+            yield return 0;
+        }
     }
 
     public Vector3 GetPosition()

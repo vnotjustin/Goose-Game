@@ -109,7 +109,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 670224309865224971, guid: 8187db7303fbb79498fb450e0a3bbea0, type: 3}
+  - {fileID: 2100000, guid: 012d7778b51aee3409c5937f3991dffd, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -581,7 +581,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 670224309865224971, guid: 8187db7303fbb79498fb450e0a3bbea0, type: 3}
+  - {fileID: 2100000, guid: 012d7778b51aee3409c5937f3991dffd, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1169,6 +1169,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7879883717227401052}
   - component: {fileID: 7879883717227401055}
+  - component: {fileID: 8291050060869896807}
   m_Layer: 0
   m_Name: GroundKeeper
   m_TagString: Untagged
@@ -1210,6 +1211,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &8291050060869896807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7879883717227401053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ded5b2e4ca7d33740856a8f311190212, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ResetSwitch: 0
+  PickUpSwitch: 0
 --- !u!1 &8025807119719528694
 GameObject:
   m_ObjectHideFlags: 0
