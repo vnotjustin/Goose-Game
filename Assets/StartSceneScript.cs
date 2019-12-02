@@ -10,6 +10,8 @@ public class StartSceneScript : MonoBehaviour
     public GameObject[] dots;
     public Text[] texts;
     public bool button0; public bool button1;
+    public bool thetitle; public bool thebuttons;
+    public GameObject title;
     // Start is called before the first frame update
     void Start()
     {
