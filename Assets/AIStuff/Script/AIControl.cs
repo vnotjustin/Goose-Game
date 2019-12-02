@@ -11,6 +11,7 @@ public class AIControl : MonoBehaviour {
     public float Speed;
     public NavMeshAgent Agent;
     public NavMeshPath Path;
+    public AIBehaviourControl ABC;
     [Space]
     public GameObject Pivot;
     public GameObject RotationPivot;
@@ -48,7 +49,9 @@ public class AIControl : MonoBehaviour {
     public void Awake()
     {
         Main = this;
+        AIBehaviourControl.Main = ABC;
         Path = new NavMeshPath();
+        MoveTarget = GetPosition();
         StartCoroutine("PickUpSwitchProcess");
         StartCoroutine("ResetSwitchProcess");
     }
@@ -127,6 +130,11 @@ public class AIControl : MonoBehaviour {
         }
 
         PathFindingMovement();
+
+        if (CurrentItem && CurrentItem.HeavyAnim)
+            SetSwitchAnim("Hold", true);
+        else
+            SetSwitchAnim("Hold", false);
     }
 
     public void ReachMoveTarget()
@@ -162,6 +170,7 @@ public class AIControl : MonoBehaviour {
     {
         Work.OnStart(CurrentWork);
         CurrentWork = Work;
+        MoveTarget = CurrentWork.GetTargetPosition();
         SetWorkState(AIWorkState.Start);
     }
 
@@ -282,6 +291,8 @@ public class AIControl : MonoBehaviour {
         if (Path.corners.Length > 1)
             MT = Path.corners[1];
 
+        if (PathObstacle.GetDistance(MT, GetPosition()) <= 0.05f)
+            return;
         SetDirection(MT - GetPosition());
     }
 

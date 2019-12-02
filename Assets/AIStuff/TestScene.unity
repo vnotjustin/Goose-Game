@@ -630,6 +630,7 @@ Transform:
   m_Children:
   - {fileID: 1862388608}
   - {fileID: 1429751494}
+  - {fileID: 616886687}
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -647,13 +648,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Rig: {fileID: 250162941}
   Col: {fileID: 250162936}
+  OriAssign: 1
   OriPosition: {x: 0, y: 0, z: 0}
   OriRotation: {x: 0, y: 0, z: 0}
   TargetPoint: {fileID: 250162935}
   HandlePoint: {fileID: 1429751493}
   PickUpWork: {fileID: 1862388609}
-  ResetWork: {fileID: 0}
+  ResetWork: {fileID: 616886689}
+  ActionIndex: 0
+  Interacted: 0
+  Detected: 0
   Holding: 0
+  HeavyAnim: 0
 --- !u!54 &250162941
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1007,36 +1013,12 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 461986198}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &480373096
+--- !u!1 &480373096 stripped
 GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 4413890854850900918, guid: 4b71011564445e247a15e9875e7326ae,
+    type: 3}
+  m_PrefabInstance: {fileID: 1260689382}
   m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 480373097}
-  m_Layer: 0
-  m_Name: HandlePoint
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &480373097
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 480373096}
-  m_LocalRotation: {x: -0.6930577, y: 0.16524875, z: 0.70023984, w: 0.04503495}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.2500005, y: 1.2500001, z: 1.2500005}
-  m_Children: []
-  m_Father: {fileID: 1260689384}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &526142161
 GameObject:
   m_ObjectHideFlags: 0
@@ -1175,6 +1157,77 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 547524490}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &616886686
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 616886687}
+  - component: {fileID: 616886689}
+  - component: {fileID: 616886688}
+  m_Layer: 0
+  m_Name: PutDownWork
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &616886687
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 616886686}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 250162939}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &616886688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 616886686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eed0bbfc3468d4c40b94863f60630b66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TargetPoint: {fileID: 616886686}
+  I: {fileID: 250162940}
+  Range: 1.5
+  Reset: 1
+--- !u!114 &616886689
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 616886686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22735d559c81ba84c8f7e554d3657b8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Destination: {fileID: 616886688}
+  TargetItem: {fileID: 250162940}
+  StartDelay: 0
+  StartAnim: 
+  RotationAnim: 0
+  PRDelay: 0
+  PRAnim: 
+  EndDelay: 1.5
+  EndAnim: PutDownItem
+  EndRotationLock: 1
+  NextWork: {fileID: 1223991869}
 --- !u!1 &730456854
 GameObject:
   m_ObjectHideFlags: 0
@@ -2246,7 +2299,7 @@ PrefabInstance:
     - target: {fileID: 7879883717227401052, guid: 4b71011564445e247a15e9875e7326ae,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7879883717227401052, guid: 4b71011564445e247a15e9875e7326ae,
         type: 3}
@@ -2290,12 +2343,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4b71011564445e247a15e9875e7326ae, type: 3}
---- !u!4 &1260689384 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7719768803317594230, guid: 4b71011564445e247a15e9875e7326ae,
-    type: 3}
-  m_PrefabInstance: {fileID: 1260689382}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1343777977
 GameObject:
   m_ObjectHideFlags: 0
@@ -3103,6 +3150,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1783824773}
   - component: {fileID: 1783824772}
+  - component: {fileID: 1783824774}
   - component: {fileID: 1783824771}
   - component: {fileID: 1783824770}
   - component: {fileID: 1783824769}
@@ -3178,8 +3226,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Anim: {fileID: 527411158}
   Rig: {fileID: 1783824771}
-  Speed: 3
+  Speed: 3.35
   Agent: {fileID: 1783824770}
+  ABC: {fileID: 1783824774}
   Pivot: {fileID: 1518279335}
   RotationPivot: {fileID: 1625640974}
   RotationSpeed: 300
@@ -3200,7 +3249,7 @@ MonoBehaviour:
   MT: {x: 0, y: 0, z: 0}
   CurrentDelay: 0
   Delaying: 0
-  StartWork: {fileID: 1862388609}
+  StartWork: {fileID: 0}
   GooseWork: {fileID: 1627072991}
   CurrentWork: {fileID: 0}
   CurrentWorkState: 0
@@ -3223,6 +3272,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!114 &1783824774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1783824768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56f8c5c224ba34e498e739a9e5779ce4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Range: 15
+  Items: []
+  ActionIndex: 0
 --- !u!1 &1799658034
 GameObject:
   m_ObjectHideFlags: 0
@@ -3432,7 +3496,7 @@ MonoBehaviour:
   EndDelay: 1.5
   EndAnim: PickUpItem
   EndRotationLock: 1
-  NextWork: {fileID: 1223991869}
+  NextWork: {fileID: 616886689}
 --- !u!114 &1862388610
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3448,6 +3512,7 @@ MonoBehaviour:
   TargetPoint: {fileID: 1862388607}
   I: {fileID: 250162940}
   Range: 1.5
+  Reset: 0
 --- !u!1 &1876567014
 GameObject:
   m_ObjectHideFlags: 0
