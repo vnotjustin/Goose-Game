@@ -16,7 +16,7 @@ public class AIDestination_Item : AIDestination {
         i = new Vector3(i.x, a.y, i.z);
         if (PathObstacle.GetDistance(i, a) <= Range)
             return a;
-        return a + (i - a).normalized * Range;
+        return i + (a - i).normalized * Range;
     }
 
     public override bool OutRange()
