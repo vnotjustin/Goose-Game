@@ -113,6 +113,8 @@ public class AIControl : MonoBehaviour {
         if (CurrentWork)
         {
             MoveTarget = CurrentWork.GetTargetPosition();
+            if (CurrentWork.OutRange())
+                EndWork();
         }
 
         PathFindingUpdate_Alter();
@@ -168,6 +170,8 @@ public class AIControl : MonoBehaviour {
 
     public void SetWork(AIWork Work)
     {
+        if (CurrentWork)
+            EndWork();
         Work.OnStart(CurrentWork);
         CurrentWork = Work;
         MoveTarget = CurrentWork.GetTargetPosition();
@@ -176,6 +180,8 @@ public class AIControl : MonoBehaviour {
 
     public void EndWork()
     {
+        if (!CurrentWork)
+            return;
         AIWork AW = CurrentWork;
         CurrentWork = null;
         RotationDisable = false;

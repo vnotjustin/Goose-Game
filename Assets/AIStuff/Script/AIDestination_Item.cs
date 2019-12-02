@@ -18,4 +18,9 @@ public class AIDestination_Item : AIDestination {
             return a;
         return a + (i - a).normalized * Range;
     }
+
+    public override bool OutRange()
+    {
+        return base.OutRange();
+    }
 }

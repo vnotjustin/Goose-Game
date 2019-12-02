@@ -1227,7 +1227,7 @@ MonoBehaviour:
   EndDelay: 1.5
   EndAnim: PutDownItem
   EndRotationLock: 1
-  NextWork: {fileID: 1223991869}
+  NextWork: {fileID: 0}
 --- !u!1 &730456854
 GameObject:
   m_ObjectHideFlags: 0

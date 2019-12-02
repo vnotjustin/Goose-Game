@@ -69,7 +69,9 @@ public class Item : MonoBehaviour {
         transform.position = OriPosition;
         transform.eulerAngles = OriRotation;
         Interacted = false;
+        Detected = false;
         ItemDrop();
+        AIBehaviourControl.Main.OnReset(this);
     }
 
     public void ItemDrop()
@@ -85,6 +87,7 @@ public class Item : MonoBehaviour {
         Col.isTrigger = true;
         Holding = true;
         Interacted = true;
+        AIBehaviourControl.Main.OnInteract(this);
     }
 
     public void OnDetect()

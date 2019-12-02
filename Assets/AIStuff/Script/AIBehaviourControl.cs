@@ -24,6 +24,13 @@ public class AIBehaviourControl : MonoBehaviour {
         }
     }
 
+    public void DropItem()
+    {
+        if (!AIControl.Main.CurrentItem)
+            return;
+        AIControl.Main.CurrentItem.ItemDrop();
+    }
+
     public void OnInteract(Item I)
     {
         ActionIndex++;
@@ -32,7 +39,8 @@ public class AIBehaviourControl : MonoBehaviour {
 
     public void OnReset(Item I)
     {
-
+        if (Items.Contains(I))
+            Items.Remove(I);
     }
 
     public void OnPickUp(Item I)
@@ -42,7 +50,8 @@ public class AIBehaviourControl : MonoBehaviour {
 
     public void OnDetected(Item I)
     {
-        Items.Add(I);
+        if (!Items.Contains(I))
+            Items.Add(I);
     }
 
     public bool InRange(Item I)
