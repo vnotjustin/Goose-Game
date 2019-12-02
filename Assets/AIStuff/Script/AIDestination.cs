@@ -23,4 +23,9 @@ public class AIDestination : MonoBehaviour {
             return TargetPoint.transform.position;
         return transform.position;
     }
+    
+    public virtual bool OutRange()
+    {
+        return false;
+    }
 }

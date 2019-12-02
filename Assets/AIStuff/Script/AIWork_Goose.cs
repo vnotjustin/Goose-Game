@@ -9,12 +9,13 @@ public class AIWork_Goose : AIWork {
     public override void OnStart(AIWork LastWork)
     {
         OriWork = LastWork;
+        AIBehaviourControl.Main.DropItem();
     }
 
     public override void OnEnd()
     {
         base.OnEnd();
-        AIControl.Main.SetWork(OriWork);
+        //AIControl.Main.SetWork(OriWork);
     }
 
     public override Vector3 GetTargetPosition()

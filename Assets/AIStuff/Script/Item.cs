@@ -5,6 +5,7 @@ using UnityEngine;
 public class Item : MonoBehaviour {
     public Rigidbody Rig;
     public Collider Col;
+    public bool OriAssign;
     [HideInInspector] public Vector3 OriPosition;
     [HideInInspector] public Vector3 OriRotation;
     [Space]
@@ -14,12 +15,19 @@ public class Item : MonoBehaviour {
     public AIWork PickUpWork;
     public AIWork ResetWork;
     [Space]
+    public int ActionIndex;
+    public bool Interacted;
+    public bool Detected;
     public bool Holding;
+    public bool HeavyAnim;
 
     public void Awake()
     {
-        OriPosition = transform.position;
-        OriRotation = transform.eulerAngles;
+        if (OriAssign)
+        {
+            OriPosition = transform.position;
+            OriRotation = transform.eulerAngles;
+        }
     }
 
     // Start is called before the first frame update
@@ -32,6 +40,11 @@ public class Item : MonoBehaviour {
     public void Update()
     {
         PositionUpdate();
+        if (Interacted && !Holding && !Detected)
+        {
+            if (AIBehaviourControl.Main.InRange(this))
+                OnDetect();
+        }
     }
 
     public void FixedUpdate()
@@ -55,7 +68,10 @@ public class Item : MonoBehaviour {
         Rig.angularVelocity = new Vector3();
         transform.position = OriPosition;
         transform.eulerAngles = OriRotation;
+        Interacted = false;
+        Detected = false;
         ItemDrop();
+        AIBehaviourControl.Main.OnReset(this);
     }
 
     public void ItemDrop()
@@ -70,5 +86,19 @@ public class Item : MonoBehaviour {
         Rig.isKinematic = true;
         Col.isTrigger = true;
         Holding = true;
+        Interacted = true;
+        AIBehaviourControl.Main.OnInteract(this);
+    }
+
+    public void OnDetect()
+    {
+        Detected = true;
+        AIBehaviourControl.Main.OnDetected(this);
+    }
+
+    public void Interact()
+    {
+        Interacted = true;
+        AIBehaviourControl.Main.OnInteract(this);
     }
 }

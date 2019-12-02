@@ -47,6 +47,11 @@ public class AIWork : MonoBehaviour {
     {
         return Destination.GetTargetPosition();
     }
+
+    public virtual bool OutRange()
+    {
+        return Destination.OutRange();
+    }
 }
 
 public enum AIWorkState
