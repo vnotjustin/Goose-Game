@@ -29,17 +29,14 @@ public class GooseGrab : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(1) && other.tag == "grabable")
         {
             hold = other.gameObject;
             other.transform.position = mouth.position;
             Debug.Log("colliderworks");
 
-            if (other.transform.position == mouth.position)
-            {
                isHolding = true;
                Debug.Log("holdingworks");
-            }
         }
         else
         {
