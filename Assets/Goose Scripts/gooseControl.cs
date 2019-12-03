@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class gooseControl : MonoBehaviour
 {
-    public bool inRange = false;
     public static GameObject goose;
     public Camera cam;
     public Texture2D cursorTexture;
@@ -13,19 +12,15 @@ public class gooseControl : MonoBehaviour
     private float defaultY = .5f;
     public float movespeed;
     public GameObject neck;
-    public AudioSource honk;
-    private AIControl ai;
 
     private Vector3 targetPos;
     public Transform target;
-    private Transform neckU;
-    private Transform neckD;
+    public LayerMask ground;
 
     // Start is called before the first frame update
     void Start()
     {
         goose = this.gameObject;
-        ai = AIControl.Main;
         targetPos = transform.position;
         Cursor.visible = true;
         Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
@@ -44,7 +39,7 @@ public class gooseControl : MonoBehaviour
 
         if (Input.GetMouseButton(0))
         {
-            if (Physics.Raycast(mouseRay, out mouseHit, rcDist))
+            if (Physics.Raycast(mouseRay, out mouseHit, rcDist, ground))
             {
                 targetPos = mouseHit.point;
                 targetPos.y = defaultY;
@@ -82,28 +77,10 @@ public class gooseControl : MonoBehaviour
             neck.transform.rotation = Quaternion.Lerp(neck.transform.rotation, Quaternion.Euler(30, 0, 0), Time.deltaTime * 3);
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            honk.Play();
-            if(inRange == true)
-            {
-                ai.Heard("goose");
-            }
-
-        }
+        
 
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        inRange = true;
-        Debug.Log(inRange);
-    }
 
-    private void OnTriggerExit(Collider other)
-    {
-        inRange = false;
-        Debug.Log(inRange);
-    }
 
 }

@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class AIControl : MonoBehaviour
-{
+public class AIControl : MonoBehaviour {
     [HideInInspector]
     public static AIControl Main;
+    public Animator Anim;
     public Rigidbody Rig;
     public float Speed;
     public NavMeshAgent Agent;
@@ -18,6 +18,9 @@ public class AIControl : MonoBehaviour
     public bool RotationFinished;
     [HideInInspector]
     public bool SubRotationFinished;
+    public bool RotationDisable;
+    public float RotationTime;
+    public float CurrentRotationTime;
     [Space]
     public PathObstacle CurrentObstacle;
     public PathObstaclePoint CurrentObstaclePoint;
@@ -31,6 +34,12 @@ public class AIControl : MonoBehaviour
     public Vector3 MT;
     public ActualObject CurrentObject;
     public float CurrentDelay;
+    public bool Delaying;
+    [Space]
+    public AIWork StartWork;
+    public AIWork GooseWork;
+    public AIWork CurrentWork;
+    public AIWorkState CurrentWorkState;
 
     public void Awake()
     {
@@ -41,13 +50,14 @@ public class AIControl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        if (StartWork)
+            SetWork(StartWork);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (RotationPivot && !RotationFinished)
+        if (RotationPivot && !RotationFinished && !RotationDisable)
         {
             float T = PathObstacle.AbsAngle(RotationPivot.transform.eulerAngles.y);
             float O = PathObstacle.AbsAngle(Pivot.transform.eulerAngles.y);
@@ -69,23 +79,56 @@ public class AIControl : MonoBehaviour
             }
         }
 
+        if (CurrentRotationTime > 0)
+        {
+            float T = PathObstacle.AbsAngle(RotationPivot.transform.eulerAngles.y);
+            float O = PathObstacle.AbsAngle(Pivot.transform.eulerAngles.y);
+            float a = O;
+            a += PathObstacle.RotateDirection(O, T) * PathObstacle.RotationDistance(O, T) * ((RotationTime - CurrentRotationTime) / RotationTime);
+            Vector3 b = Pivot.transform.eulerAngles;
+            Pivot.transform.eulerAngles = new Vector3(b.x, a, b.z);
+            SubRotationFinished = false;
+
+            RotationTime = CurrentRotationTime;
+            CurrentRotationTime -= Time.deltaTime;
+        }
+        else if (RotationTime > 0)
+        {
+            RotationTime = 0;
+            RotationFinished = true;
+            Pivot.transform.eulerAngles = RotationPivot.transform.eulerAngles;
+            SubRotationFinished = true;
+            NextStep();
+        }
+
+        if (CurrentWork)
+        {
+            MoveTarget = CurrentWork.GetTargetPosition();
+        }
+
+        PathFindingUpdate_Alter();
+
         if (CurrentDelay > 0)
         {
             CurrentDelay -= Time.deltaTime;
             SetSpeed(new Vector3());
             return;
         }
+        else if (Delaying)
+        {
+            Delaying = false;
+            NextStep();
+        }
 
-        PathFindingUpdate_Alter();
         PathFindingMovement();
     }
 
     public void ReachMoveTarget()
     {
-        if (CurrentObject)
+        if (CurrentWork)
         {
             SetSpeed(new Vector3());
-            SetDelay(CurrentObject.PutDownDelay);
+            NextStep();
         }
     }
 
@@ -107,8 +150,73 @@ public class AIControl : MonoBehaviour
 
     public void Heard(string Key)
     {
-        Debug.Log(Key);
-        PresetTarget = gooseControl.goose;
+        if (CurrentWork != GooseWork)
+        {
+            SetWork(GooseWork);
+        }
+    }
+
+    public void SetWork(AIWork Work)
+    {
+        Work.OnStart(CurrentWork);
+        CurrentWork = Work;
+        SetWorkState(AIWorkState.Start);
+    }
+
+    public void EndWork()
+    {
+        AIWork AW = CurrentWork;
+        CurrentWork = null;
+        RotationDisable = false;
+        AW.OnEnd();
+    }
+
+    public void NextStep()
+    {
+        if (CurrentWorkState == AIWorkState.Start)
+            SetWorkState(AIWorkState.Rotate);
+        else if (CurrentWorkState == AIWorkState.Rotate)
+            SetWorkState(AIWorkState.PostRotate);
+        else if (CurrentWorkState == AIWorkState.PostRotate)
+            SetWorkState(AIWorkState.Move);
+        else if (CurrentWorkState == AIWorkState.Move)
+            SetWorkState(AIWorkState.End);
+        else if (CurrentWorkState == AIWorkState.End)
+            EndWork();
+    }
+
+    public void SetWorkState(AIWorkState Value)
+    {
+        CurrentWorkState = Value;
+        if (Value == AIWorkState.Start && CurrentWork.StartDelay > 0)
+        {
+            RotationDisable = true;
+            SetDelay(CurrentWork.StartDelay);
+            SetInstantAnim(CurrentWork.StartAnim);
+        }
+        else if (Value == AIWorkState.Rotate && CurrentWork.RotationAnim)
+        {
+            RotationDisable = true;
+            SetRotationTime(1f);
+        }
+        else if (Value == AIWorkState.PostRotate && CurrentWork.PRDelay > 0)
+        {
+            RotationDisable = true;
+            SetDelay(CurrentWork.PRDelay);
+            SetInstantAnim(CurrentWork.PRAnim);
+        }
+        else if (Value == AIWorkState.Move)
+        {
+            RotationDisable = false;
+        }
+        else if (Value == AIWorkState.End && CurrentWork.EndDelay > 0)
+        {
+            //RotationDisable = true;
+            SetDelay(CurrentWork.EndDelay);
+            SetInstantAnim(CurrentWork.EndAnim);
+        }
+        else
+            NextStep();
     }
 
     public void PathFindingUpdate()
@@ -152,21 +260,20 @@ public class AIControl : MonoBehaviour
         Path.ClearCorners();
         Agent.CalculatePath(MT, Path);
         if (Path.corners.Length > 1)
-        {
-            print(Path.corners[1]);
             MT = Path.corners[1];
-        }
+
+        SetDirection(MT - GetPosition());
     }
 
     public void PathFindingMovement()
     {
         if (PathObstacle.GetDistance(GetPosition(), MT) <= 0.1f)
         {
-            ReachMoveTarget();
+            if (PathObstacle.GetDistance(GetPosition(), MoveTarget) <= 0.1f)
+                ReachMoveTarget();
         }
         else
         {
-            SetDirection(MT - GetPosition());
             SetSpeed(MT - GetPosition());
         }
     }
@@ -200,7 +307,29 @@ public class AIControl : MonoBehaviour
 
     public void SetSpeed(Vector3 Value)
     {
+        if (Value.x == 0 && Value.z == 0)
+            SetSwitchAnim("Walk", false);
+        else
+            SetSwitchAnim("Walk", true);
         Rig.velocity = Value.normalized * GetSpeed();
+    }
+
+    public void SetRotationTime(float Value)
+    {
+        CurrentDelay = Value;
+        RotationTime = Value;
+        CurrentRotationTime = Value;
+        SetInstantAnim("Turn");
+    }
+
+    public void SetSwitchAnim(string Key, bool Value)
+    {
+        Anim.SetBool(Key, Value);
+    }
+
+    public void SetInstantAnim(string Key)
+    {
+        Anim.SetTrigger(Key);
     }
 
     public Vector3 GetPosition()

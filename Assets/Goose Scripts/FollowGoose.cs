@@ -30,7 +30,7 @@ public class FollowGoose : MonoBehaviour
 
         else
         {
-            maincam.orthographicSize = (float)Mathf.Lerp(maincam.orthographicSize, 5, Time.deltaTime * 2); ;
+            maincam.orthographicSize = (float)Mathf.Lerp(maincam.orthographicSize, 5, Time.deltaTime * 2); 
         }
     }
 
