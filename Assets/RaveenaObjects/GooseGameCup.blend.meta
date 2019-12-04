@@ -1,9 +1,24 @@
 fileFormatVersion: 2
-guid: c71eb5cf8f70c3348a8a75b20f8fd7f3
+guid: 73ec050ea0e9402449ba4f7df93bc6f4
 ModelImporter:
   serializedVersion: 26
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: CupHandle
+    second: {fileID: 2100000, guid: ca300ec61580d0a43ab1861b3560ba04, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Inner Coloe
+    second: {fileID: 2100000, guid: 57cea4c9c36ea2c419a1dbbbaba614ee, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: OuterCup
+    second: {fileID: 2100000, guid: 968a1eb3b20bd7843a7b63461c35302d, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
