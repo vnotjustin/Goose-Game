@@ -43,6 +43,16 @@ public class GooseGrab : MonoBehaviour
         }
     }
 
+    public void Grabbed(GameObject item)
+    {
+        if(isHolding == true && t <= 0 && item == hold)
+        {
+            isHolding = false;
+            t2 = 5;
+            callFirst = true;
+        }
+    }
+
     private void OnTriggerStay(Collider other)
     {
         if (Input.GetMouseButtonDown(1) && other.tag == "grabable" && t2 <= 0 && callFirst == true)

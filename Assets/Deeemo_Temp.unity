@@ -2060,6 +2060,18 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 84d56156b51d800488598c0a9cbda219, type: 2}
+    - target: {fileID: 1665997266299484084, guid: 4b71011564445e247a15e9875e7326ae,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: -297142525791743449, guid: 77e4d764a0fa80e4db915b1f581bf152,
+        type: 3}
+    - target: {fileID: 4650325612697110188, guid: 4b71011564445e247a15e9875e7326ae,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 7505067001973432232, guid: 77e4d764a0fa80e4db915b1f581bf152,
+        type: 3}
     - target: {fileID: 6183395619120517801, guid: 4b71011564445e247a15e9875e7326ae,
         type: 3}
       propertyPath: m_Icon
