@@ -35,7 +35,7 @@ public class StartSceneScript : MonoBehaviour
     void StartGame()
     {
         Debug.Log("Game Starts");
-        SceneManager.LoadScene("GooseScene");
+        SceneManager.LoadScene("Deeemo");
 
     }
     void QuitGame()
