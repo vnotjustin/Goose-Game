@@ -20,6 +20,7 @@ public class Item : MonoBehaviour {
     public bool Detected;
     public bool Holding;
     public bool HeavyAnim;
+    public bool TriggerType;
 
     public void Awake()
     {
@@ -71,6 +72,11 @@ public class Item : MonoBehaviour {
         Interacted = false;
         Detected = false;
         ItemDrop();
+        if (TriggerType)
+        {
+            Col.isTrigger = true;
+            Rig.useGravity = false;
+        }
         AIBehaviourControl.Main.OnReset(this);
     }
 
@@ -78,6 +84,7 @@ public class Item : MonoBehaviour {
     {
         Rig.isKinematic = false;
         Col.isTrigger = false;
+        Rig.useGravity = true;
         Holding = false;
     }
 
