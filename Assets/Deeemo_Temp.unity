@@ -588,7 +588,7 @@ MonoBehaviour:
   PRAnim: 
   EndDelay: 1
   EndAnim: 
-  EndRotationLock: 0
+  EndRotationLock: 1
   NextWork: {fileID: 0}
   Interrupted: 1
 --- !u!4 &277606266
@@ -657,7 +657,7 @@ MonoBehaviour:
   PRAnim: 
   EndDelay: 1
   EndAnim: 
-  EndRotationLock: 0
+  EndRotationLock: 1
   NextWork: {fileID: 0}
   Interrupted: 1
 --- !u!4 &394504219
@@ -1843,7 +1843,7 @@ MonoBehaviour:
   PRAnim: 
   EndDelay: 1
   EndAnim: 
-  EndRotationLock: 0
+  EndRotationLock: 1
   NextWork: {fileID: 0}
   Interrupted: 1
 --- !u!4 &1127316078
@@ -1913,7 +1913,7 @@ MonoBehaviour:
   PRAnim: 
   EndDelay: 1
   EndAnim: 
-  EndRotationLock: 0
+  EndRotationLock: 1
   NextWork: {fileID: 0}
   Interrupted: 1
 --- !u!114 &1186425447
@@ -2123,7 +2123,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1364822548}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.32, y: 0.29, z: -0.622}
+  m_LocalPosition: {x: -1.05, y: 0.29, z: -0.622}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1683514111376467133}
@@ -5070,12 +5070,12 @@ PrefabInstance:
     - target: {fileID: 3119196592062417718, guid: 55132a032546d8d4a894e9273ddf2c3d,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.57
+      value: -0.34
       objectReference: {fileID: 0}
     - target: {fileID: 3119196592062417718, guid: 55132a032546d8d4a894e9273ddf2c3d,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.52
+      value: 1.51
       objectReference: {fileID: 0}
     - target: {fileID: 3119196592062417718, guid: 55132a032546d8d4a894e9273ddf2c3d,
         type: 3}
