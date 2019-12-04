@@ -107,6 +107,7 @@ public class Item : MonoBehaviour {
     {
         Interacted = true;
         Rig.useGravity = true;
+        Col.isTrigger = false;
         AIBehaviourControl.Main.OnInteract(this);
     }
 }
