@@ -240,7 +240,7 @@ public class AIControl : MonoBehaviour {
     {
         CurrentItem = I;
         I.OnPickUp();
-        gooseControl.goose.GetComponent<GooseGrab>().Grabbed(I.gameObject);
+        gooseControl.goose.GetComponentInChildren<GooseGrab>().Grabbed(I.gameObject);
     }
 
     public void DropItem(bool Reset)
