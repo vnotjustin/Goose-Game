@@ -240,6 +240,7 @@ public class AIControl : MonoBehaviour {
     {
         CurrentItem = I;
         I.OnPickUp();
+        gooseControl.goose.GetComponentInChildren<GooseGrab>().Grabbed(I.gameObject);
     }
 
     public void DropItem(bool Reset)
@@ -306,7 +307,7 @@ public class AIControl : MonoBehaviour {
     {
         if (PathObstacle.GetDistance(GetPosition(), MT) <= 0.1f)
         {
-            if (PathObstacle.GetDistance(GetPosition(), MoveTarget) <= 0.1f)
+            if (PathObstacle.GetDistance(GetPosition(), new Vector3(MoveTarget.x, GetPosition().y, MoveTarget.z)) <= 0.1f)
                 ReachMoveTarget();
         }
         else

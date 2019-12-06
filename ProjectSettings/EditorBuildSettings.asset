@@ -4,5 +4,11 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/StartScene.unity
+    guid: 9ea5e981d532df44783ef6e8a02bb80a
+  - enabled: 1
+    path: Assets/Deeemo.unity
+    guid: 794cb4515a70b5d439ada6f300eb6900
   m_configObjects: {}
