@@ -1888,7 +1888,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1309998090}
   - component: {fileID: 1309998091}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2991,17 +2991,17 @@ PrefabInstance:
     - target: {fileID: 8544757531846214469, guid: acd82334d0eb1964aab16914ec2722ba,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.0124
+      value: -0.013
       objectReference: {fileID: 0}
     - target: {fileID: 8544757531846214469, guid: acd82334d0eb1964aab16914ec2722ba,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.0111
+      value: 0.0157
       objectReference: {fileID: 0}
     - target: {fileID: 8544757531846214469, guid: acd82334d0eb1964aab16914ec2722ba,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8544757531846214469, guid: acd82334d0eb1964aab16914ec2722ba,
         type: 3}
