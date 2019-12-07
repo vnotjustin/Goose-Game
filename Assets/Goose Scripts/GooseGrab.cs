@@ -8,13 +8,17 @@ public class GooseGrab : MonoBehaviour
     private GameObject hold;
     public Transform mouth;
     bool callFirst;
+    Collider hbx;
+    Collider hbic;
     int t;
     int t2;
     Item it;
+    gooseControl gc;
     // Start is called before the first frame update
     void Start()
     {
         callFirst = true;
+        gc = GetComponent<gooseControl>();
     }
 
     // Update is called once per frame
@@ -31,11 +35,17 @@ public class GooseGrab : MonoBehaviour
         if (isHolding == true)
         {
             hold.transform.position = mouth.transform.position;
-            
+            hbx = hold.GetComponent<Collider>();
+            hbx.enabled = false;
+            hbic = hold.GetComponentInChildren<Collider>();
+            hbic.enabled = false;
+
         }
 
         if (Input.GetMouseButtonDown(1) && isHolding == true && t <= 0)
         {
+            hbx.enabled = true;
+            hbic.enabled = true;
             Debug.Log("dropped");
             isHolding = false;
             t2 = 5;
@@ -47,9 +57,12 @@ public class GooseGrab : MonoBehaviour
     {
         if(isHolding == true && t <= 0 && item == hold)
         {
+            hbx.enabled = true;
+            hbic.enabled = true;
             isHolding = false;
             t2 = 5;
             callFirst = true;
+            //gc.RunOut();
         }
     }
 
