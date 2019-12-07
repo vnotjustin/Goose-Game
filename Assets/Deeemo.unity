@@ -7891,6 +7891,11 @@ PrefabInstance:
       propertyPath: mouth
       value: 
       objectReference: {fileID: 716562554}
+    - target: {fileID: 1048799488977747892, guid: acd82334d0eb1964aab16914ec2722ba,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 023afe91f85899c4a95cfdd1b9ed812f, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: acd82334d0eb1964aab16914ec2722ba, type: 3}
 --- !u!4 &1669071353 stripped
