@@ -35,7 +35,9 @@ public class AIBehaviourControl : MonoBehaviour {
 
         if (WaitTime <= 0)
         {
-            List<AIWork> W = RandomWorks;
+            List<AIWork> W = new List<AIWork>();
+            foreach (AIWork AW in RandomWorks)
+                W.Add(AW);
             if (W.Contains(LastRandomWork))
                 W.Remove(LastRandomWork);
             if (W.Count > 0)
