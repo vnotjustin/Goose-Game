@@ -5,7 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - grabable
-  - carrot
+  - Lake
+  - Checker
   layers:
   - Default
   - TransparentFX

@@ -16,7 +16,7 @@ public class FollowGoose : MonoBehaviour
     void Update()
     {
 
-        maincam.transform.position = new Vector3(goose.position.x - 11, 16, goose.position.z - 11);
+        maincam.transform.position = new Vector3(goose.position.x - 12, 10.5f, goose.position.z - 12);
 
         if (Input.GetKey(KeyCode.Z))
         {
