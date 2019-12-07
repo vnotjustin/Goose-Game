@@ -85,6 +85,7 @@ MonoBehaviour:
   EndAnim: PutDownItem
   EndRotationLock: 1
   NextWork: {fileID: 0}
+  Interrupted: 0
 --- !u!114 &8004287107103844569
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -189,12 +190,14 @@ MonoBehaviour:
   HandlePoint: {fileID: 8004287106531067224}
   PickUpWork: {fileID: 8004287107855905895}
   ResetWork: {fileID: 8004287107103844568}
+  TriggerType: 1
   ActionIndex: 0
+  Resetted: 0
   Interacted: 0
   Detected: 0
   Holding: 0
   HeavyAnim: 0
-  TriggerType: 1
+  TriggerLock: 1
 --- !u!1 &8004287107855905898
 GameObject:
   m_ObjectHideFlags: 0
@@ -250,6 +253,7 @@ MonoBehaviour:
   EndAnim: PickUpItem
   EndRotationLock: 1
   NextWork: {fileID: 8004287107103844568}
+  Interrupted: 0
 --- !u!114 &8004287107855905892
 MonoBehaviour:
   m_ObjectHideFlags: 0

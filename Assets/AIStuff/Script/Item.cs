@@ -15,12 +15,14 @@ public class Item : MonoBehaviour {
     public AIWork PickUpWork;
     public AIWork ResetWork;
     [Space]
+    public bool TriggerType;
     public int ActionIndex;
+    public bool Resetted;
     public bool Interacted;
     public bool Detected;
     public bool Holding;
     public bool HeavyAnim;
-    public bool TriggerType;
+    public bool TriggerLock;
 
     public void Awake()
     {
@@ -41,6 +43,7 @@ public class Item : MonoBehaviour {
     public void Update()
     {
         PositionUpdate();
+        ColliderUpdate();
         if (Interacted && !Holding && !Detected)
         {
             if (AIBehaviourControl.Main.InRange(this))
@@ -51,6 +54,7 @@ public class Item : MonoBehaviour {
     public void FixedUpdate()
     {
         PositionUpdate();
+        ColliderUpdate();
     }
 
     public void PositionUpdate()
@@ -63,18 +67,24 @@ public class Item : MonoBehaviour {
         }
     }
 
+    public void ColliderUpdate()
+    {
+        Col.isTrigger = GetTrigger();
+    }
+
     public void ItemReset()
     {
         Rig.velocity = new Vector3();
         Rig.angularVelocity = new Vector3();
         transform.position = OriPosition;
         transform.eulerAngles = OriRotation;
+        Resetted = true;
         Interacted = false;
         Detected = false;
         ItemDrop();
         if (TriggerType)
         {
-            Col.isTrigger = true;
+            TriggerLock = true;
             Rig.useGravity = false;
         }
         AIBehaviourControl.Main.OnReset(this);
@@ -83,15 +93,16 @@ public class Item : MonoBehaviour {
     public void ItemDrop()
     {
         Rig.isKinematic = false;
-        Col.isTrigger = false;
+        TriggerLock = false;
         Rig.useGravity = true;
         Holding = false;
     }
 
     public void OnPickUp()
     {
+        Resetted = false;
         Rig.isKinematic = true;
-        Col.isTrigger = true;
+        TriggerLock = true;
         Holding = true;
         Interacted = true;
         AIBehaviourControl.Main.OnInteract(this);
@@ -105,9 +116,15 @@ public class Item : MonoBehaviour {
 
     public void Interact()
     {
+        Resetted = false;
         Interacted = true;
         Rig.useGravity = true;
-        Col.isTrigger = false;
+        TriggerLock = false;
         AIBehaviourControl.Main.OnInteract(this);
+    }
+
+    public bool GetTrigger()
+    {
+        return TriggerLock;
     }
 }
