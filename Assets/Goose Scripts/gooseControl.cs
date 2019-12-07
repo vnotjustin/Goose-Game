@@ -17,6 +17,8 @@ public class gooseControl : MonoBehaviour
     public Transform target;
     public LayerMask ground;
     public static bool isBend;
+    public Transform farmer;
+    public static bool pptrue = false;
 
     // Start is called before the first frame update
     void Start()
@@ -33,7 +35,15 @@ public class gooseControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKey(KeyCode.Tab))
+        {
+            pptrue = true;
+        }
+        else
+        {
+            pptrue = false;
+        }
+
         Ray mouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
         float rcDist = 1000f;
         Debug.DrawRay(mouseRay.origin, mouseRay.direction * rcDist, Color.red);
@@ -91,7 +101,10 @@ public class gooseControl : MonoBehaviour
 
     }
 
-
+    public void RunOut()
+    {
+        transform.position = Vector3.MoveTowards(transform.position, -farmer.position, movespeed * Time.deltaTime);
+    }
 
 
 }
