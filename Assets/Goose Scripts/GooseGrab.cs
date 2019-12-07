@@ -10,6 +10,7 @@ public class GooseGrab : MonoBehaviour
     bool callFirst;
     int t;
     int t2;
+    Item it;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,11 +31,22 @@ public class GooseGrab : MonoBehaviour
         if (isHolding == true)
         {
             hold.transform.position = mouth.transform.position;
+            
         }
 
         if (Input.GetMouseButtonDown(1) && isHolding == true && t <= 0)
         {
             Debug.Log("dropped");
+            isHolding = false;
+            t2 = 5;
+            callFirst = true;
+        }
+    }
+
+    public void Grabbed(GameObject item)
+    {
+        if(isHolding == true && t <= 0 && item == hold)
+        {
             isHolding = false;
             t2 = 5;
             callFirst = true;
@@ -51,6 +63,7 @@ public class GooseGrab : MonoBehaviour
             isHolding = true;
             Debug.Log("holdingworks");
             t = 5;
+            other.GetComponent<Item>().Interact();
         }
 
     }

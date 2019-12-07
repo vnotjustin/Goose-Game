@@ -19,6 +19,7 @@ public class AIWork : MonoBehaviour {
     public bool EndRotationLock;
     [Space]
     public AIWork NextWork;
+    public bool Interrupted;
 
     // Start is called before the first frame update
     public virtual void Start()

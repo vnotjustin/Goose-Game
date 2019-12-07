@@ -8,6 +8,11 @@ public class AIBehaviourControl : MonoBehaviour {
     public float Range;
     public List<Item> Items;
     public int ActionIndex;
+    [Space]
+    public List<AIWork> RandomWorks;
+    public AIWork LastRandomWork;
+    public float MaxWaitTime;
+    public float WaitTime;
 
     // Start is called before the first frame update
     void Start()
@@ -18,9 +23,28 @@ public class AIBehaviourControl : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        if (!AIControl.Main.CurrentWork && GetNextItem())
+        if ((!AIControl.Main.CurrentWork || AIControl.Main.CurrentWork.Interrupted) && GetNextItem())
         {
             AIControl.Main.SetWork(GetNextItem().PickUpWork);
+        }
+
+        if (AIControl.Main.CurrentWork)
+            WaitTime = MaxWaitTime;
+        else
+            WaitTime -= Time.deltaTime;
+
+        if (WaitTime <= 0)
+        {
+            List<AIWork> W = RandomWorks;
+            if (W.Contains(LastRandomWork))
+                W.Remove(LastRandomWork);
+            if (W.Count > 0)
+            {
+                AIWork AW = W[Random.Range(0, W.Count)];
+                AIControl.Main.SetWork(AW);
+                LastRandomWork = AW;
+                WaitTime = MaxWaitTime;
+            }
         }
     }
 
