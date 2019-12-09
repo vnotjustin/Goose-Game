@@ -12,25 +12,13 @@ public class TaskCheck : MonoBehaviour
     public bool picnic = false;
  
 
-    // TaskCheck tc;
+   // when calling any of these booleans in your script use tc.(bool) when calling them. Example if(tc.getin == true).
 
-    //void Start()
-    //{
-    //    tc = GetComponent<TaskCheck>();
-    //}
-
-    // when calling any of these booleans in your script use tc.(bool) when calling them. Example if(tc.getin == true).
-
-
-
-
-    // Start is called before the first frame update
     void Start()
     {
 
     }
 
-    // Update is called once per frame
     void Update()
     {
         
