@@ -35,6 +35,14 @@ public class Item_Hat : Item {
 
     public override void ItemReset()
     {
+        base.ItemReset();
+        StartDisable = false;
+        HatControl.Main.HaveHat = true;
+    }
+
+    public override void OnPickUp()
+    {
+        base.OnPickUp();
         StartDisable = false;
     }
 

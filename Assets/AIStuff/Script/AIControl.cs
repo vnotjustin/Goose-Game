@@ -160,6 +160,8 @@ public class AIControl : MonoBehaviour {
         CurrentDelay = Value;
         if (Value > 0)
             Delaying = true;
+        else
+            Delaying = false;
     }
 
     public void Heard(string Key)
@@ -172,6 +174,8 @@ public class AIControl : MonoBehaviour {
 
     public void SetWork(AIWork Work)
     {
+        if (!Work)
+            return;
         if (CurrentWork)
             EndWork();
         Work.OnStart(CurrentWork);
@@ -185,8 +189,9 @@ public class AIControl : MonoBehaviour {
         if (!CurrentWork)
             return;
         AIWork AW = CurrentWork;
-        CurrentWork = null;
         RotationDisable = false;
+        SetDelay(0);
+        CurrentWork = null;
         AW.OnEnd();
     }
 

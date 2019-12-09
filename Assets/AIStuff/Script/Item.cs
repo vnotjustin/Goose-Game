@@ -100,7 +100,7 @@ public class Item : MonoBehaviour {
         Holding = false;
     }
 
-    public void OnPickUp()
+    public virtual void OnPickUp()
     {
         Resetted = false;
         KinematicLock = true;

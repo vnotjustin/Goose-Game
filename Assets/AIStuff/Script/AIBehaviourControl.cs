@@ -13,6 +13,7 @@ public class AIBehaviourControl : MonoBehaviour {
     public AIWork LastRandomWork;
     public float MaxWaitTime;
     public float WaitTime;
+    public float ProtectedTime;
 
     // Start is called before the first frame update
     void Start()
@@ -23,15 +24,20 @@ public class AIBehaviourControl : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        if ((!AIControl.Main.CurrentWork || AIControl.Main.CurrentWork.Interrupted) && GetNextItem())
+        if ((!AIControl.Main.CurrentWork || AIControl.Main.CurrentWork.Interrupted) && GetNextItem() && ProtectedTime < 0)
         {
             AIControl.Main.SetWork(GetNextItem().PickUpWork);
         }
 
         if (AIControl.Main.CurrentWork)
+        {
             WaitTime = MaxWaitTime;
+        }
         else
+        {
+            ProtectedTime -= Time.deltaTime;
             WaitTime -= Time.deltaTime;
+        }
 
         if (WaitTime <= 0)
         {
