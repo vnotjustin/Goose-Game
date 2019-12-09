@@ -43,6 +43,7 @@ public class AIControl : MonoBehaviour {
     [Space]
     public GameObject HandlePoint;
     public Item CurrentItem;
+    public HatControl HAC;
     [Space]
     public AIAnimSwitch Switch;
 
@@ -54,6 +55,7 @@ public class AIControl : MonoBehaviour {
         MoveTarget = GetPosition();
         StartCoroutine("PickUpSwitchProcess");
         StartCoroutine("ResetSwitchProcess");
+        HatControl.Main = HAC;
     }
 
     // Start is called before the first frame update
@@ -158,6 +160,8 @@ public class AIControl : MonoBehaviour {
         CurrentDelay = Value;
         if (Value > 0)
             Delaying = true;
+        else
+            Delaying = false;
     }
 
     public void Heard(string Key)
@@ -170,6 +174,8 @@ public class AIControl : MonoBehaviour {
 
     public void SetWork(AIWork Work)
     {
+        if (!Work)
+            return;
         if (CurrentWork)
             EndWork();
         Work.OnStart(CurrentWork);
@@ -183,8 +189,9 @@ public class AIControl : MonoBehaviour {
         if (!CurrentWork)
             return;
         AIWork AW = CurrentWork;
-        CurrentWork = null;
         RotationDisable = false;
+        SetDelay(0);
+        CurrentWork = null;
         AW.OnEnd();
     }
 
