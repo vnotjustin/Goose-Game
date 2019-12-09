@@ -8,7 +8,7 @@ public class Item_Hat : Item {
 
     public override void PositionUpdate()
     {
-        if (GetPoint())
+        if (GetPoint() && HatControl.Main.CurrentHat == this)
         {
             transform.position = GetPoint().transform.position;
             transform.eulerAngles = GetPoint().transform.eulerAngles;

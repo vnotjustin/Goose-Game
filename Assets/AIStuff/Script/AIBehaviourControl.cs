@@ -14,6 +14,10 @@ public class AIBehaviourControl : MonoBehaviour {
     public float MaxWaitTime;
     public float WaitTime;
     public float ProtectedTime;
+    [Space]
+    public float HatWorkRate = 0.3f;
+    public bool LastHatWork;
+    public AIWork HatWork;
 
     // Start is called before the first frame update
     void Start()
@@ -24,11 +28,6 @@ public class AIBehaviourControl : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        if ((!AIControl.Main.CurrentWork || AIControl.Main.CurrentWork.Interrupted) && GetNextItem() && ProtectedTime < 0)
-        {
-            AIControl.Main.SetWork(GetNextItem().PickUpWork);
-        }
-
         if (AIControl.Main.CurrentWork)
         {
             WaitTime = MaxWaitTime;
@@ -41,18 +40,32 @@ public class AIBehaviourControl : MonoBehaviour {
 
         if (WaitTime <= 0)
         {
-            List<AIWork> W = new List<AIWork>();
-            foreach (AIWork AW in RandomWorks)
-                W.Add(AW);
-            if (W.Contains(LastRandomWork))
-                W.Remove(LastRandomWork);
-            if (W.Count > 0)
+            if (!LastHatWork && Random.Range(0, 1f) <= HatWorkRate)
             {
-                AIWork AW = W[Random.Range(0, W.Count)];
-                AIControl.Main.SetWork(AW);
-                LastRandomWork = AW;
-                WaitTime = MaxWaitTime;
+                AIControl.Main.SetWork(HatWork);
+                LastHatWork = true;
             }
+            else
+            {
+                LastHatWork = false;
+                List<AIWork> W = new List<AIWork>();
+                foreach (AIWork AW in RandomWorks)
+                    W.Add(AW);
+                if (W.Contains(LastRandomWork))
+                    W.Remove(LastRandomWork);
+                if (W.Count > 0)
+                {
+                    AIWork AW = W[Random.Range(0, W.Count)];
+                    AIControl.Main.SetWork(AW);
+                    LastRandomWork = AW;
+                    WaitTime = MaxWaitTime;
+                }
+            }
+        }
+
+        if ((!AIControl.Main.CurrentWork || AIControl.Main.CurrentWork.Interrupted) && GetNextItem() && ProtectedTime < 0)
+        {
+            AIControl.Main.SetWork(GetNextItem().PickUpWork);
         }
     }
 
