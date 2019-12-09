@@ -12,6 +12,10 @@ public class TaskAI : MonoBehaviour
     public bool ralakea = false;
     public bool picnica = false;
 
+    public Animator lineAnimation;
+    public Animator lineAnimation2;
+    public Animator lineAnimation3;
+
     void Start()
     {
         tc = GetComponent<TaskCheck>(); //getting the TaskCheck script 
@@ -19,18 +23,48 @@ public class TaskAI : MonoBehaviour
             
     void Update()
     {
-        
+        CheckingTasks();
     }
 
     public void CheckingTasks() //function for checking the tasks to play animation 
     {
-        if (tc.getin == true && getina == false)
+        if (tc.getin == true && getina == false/* && Input.GetKey(KeyCode.Tab)*/)
         {
-            //play animation 
+            lineAnimation.SetBool("getina", true); //play animation
+            Debug.Log("playing strike");
+            getina = true; //prevents player from seeing the strikethrough animation every time they press tab
         }
-        else
+
+        if(tc.gkwet == true && gkweta == false)
         {
-            //don't do anything
+            lineAnimation2.SetBool("gkweta", true);
+            Debug.Log("strike2");
+            gkweta = true;
         }
+
+        if (tc.stkey == true && stkeya == false)
+        {
+            lineAnimation3.SetBool("stkeya", true);
+            stkeya = true;
+        }
+
+        if (tc.wehat == true && wehata == false)
+        {
+            wehata = true; 
+            //play animation
+        }
+
+        if (tc.ralake == true && ralakea == false)
+        {
+            ralakea = true; 
+            //play animation
+        }
+
+        if (tc.picnic == true && picnica == false)
+        {
+            picnica = true; 
+            //play animation
+        }
+
     }
 }

@@ -9,7 +9,8 @@ public class enableui : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        todo.SetActive(false);
+        //todo.SetActive(false);
+        todo.GetComponentInChildren<CanvasGroup>().alpha = 0;
     }
 
     // Update is called once per frame
@@ -17,11 +18,13 @@ public class enableui : MonoBehaviour
     {
         if (gooseControl.pptrue)
         {
-            todo.SetActive(true);
+            //todo.SetActive(true);
+            todo.GetComponentInChildren<CanvasGroup>().alpha = 1;
         }
         else if (!gooseControl.pptrue)
         {
-            todo.SetActive(false);
+            //todo.SetActive(false);
+            todo.GetComponentInChildren<CanvasGroup>().alpha = 0;
         }
     }
 }
