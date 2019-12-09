@@ -43,6 +43,7 @@ public class AIControl : MonoBehaviour {
     [Space]
     public GameObject HandlePoint;
     public Item CurrentItem;
+    public HatControl HAC;
     [Space]
     public AIAnimSwitch Switch;
 
@@ -54,6 +55,7 @@ public class AIControl : MonoBehaviour {
         MoveTarget = GetPosition();
         StartCoroutine("PickUpSwitchProcess");
         StartCoroutine("ResetSwitchProcess");
+        HatControl.Main = HAC;
     }
 
     // Start is called before the first frame update

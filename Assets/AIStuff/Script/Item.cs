@@ -23,6 +23,7 @@ public class Item : MonoBehaviour {
     public bool Holding;
     public bool HeavyAnim;
     public bool TriggerLock;
+    public bool KinematicLock;
 
     public void Awake()
     {
@@ -34,7 +35,7 @@ public class Item : MonoBehaviour {
     }
 
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
         
     }
@@ -57,7 +58,7 @@ public class Item : MonoBehaviour {
         ColliderUpdate();
     }
 
-    public void PositionUpdate()
+    public virtual void PositionUpdate()
     {
         if (Holding)
         {
@@ -70,9 +71,10 @@ public class Item : MonoBehaviour {
     public void ColliderUpdate()
     {
         Col.isTrigger = GetTrigger();
+        Rig.isKinematic = GetKinematic();
     }
 
-    public void ItemReset()
+    public virtual void ItemReset()
     {
         Rig.velocity = new Vector3();
         Rig.angularVelocity = new Vector3();
@@ -92,7 +94,7 @@ public class Item : MonoBehaviour {
 
     public void ItemDrop()
     {
-        Rig.isKinematic = false;
+        KinematicLock = false;
         TriggerLock = false;
         Rig.useGravity = true;
         Holding = false;
@@ -101,7 +103,7 @@ public class Item : MonoBehaviour {
     public void OnPickUp()
     {
         Resetted = false;
-        Rig.isKinematic = true;
+        KinematicLock = true;
         TriggerLock = true;
         Holding = true;
         Interacted = true;
@@ -114,7 +116,7 @@ public class Item : MonoBehaviour {
         AIBehaviourControl.Main.OnDetected(this);
     }
 
-    public void Interact()
+    public virtual void Interact()
     {
         Resetted = false;
         Interacted = true;
@@ -123,8 +125,13 @@ public class Item : MonoBehaviour {
         AIBehaviourControl.Main.OnInteract(this);
     }
 
-    public bool GetTrigger()
+    public virtual bool GetTrigger()
     {
         return TriggerLock;
+    }
+
+    public virtual bool GetKinematic()
+    {
+        return KinematicLock;
     }
 }
