@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class FollowGoose : MonoBehaviour
 {
+    public GameObject Pivot;
     public Camera maincam;
     public Transform goose;
     // Start is called before the first frame update
@@ -16,7 +17,7 @@ public class FollowGoose : MonoBehaviour
     void Update()
     {
 
-        maincam.transform.position = new Vector3(goose.position.x - 12, 10.5f, goose.position.z - 12);
+        Pivot.transform.position = new Vector3(goose.position.x, 0, goose.position.z);
 
         if (Input.GetKey(KeyCode.Z))
         {

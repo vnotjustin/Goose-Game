@@ -1122,6 +1122,7 @@ MonoBehaviour:
   ground:
     serializedVersion: 2
     m_Bits: 512
+  farmer: {fileID: 0}
 --- !u!82 &8544757532198562296
 AudioSource:
   m_ObjectHideFlags: 0

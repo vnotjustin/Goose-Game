@@ -120,6 +120,8 @@ public class Item : MonoBehaviour {
 
     public void OnDetect()
     {
+        if (Detected)
+            return;
         Detected = true;
         AIBehaviourControl.Main.OnDetected(this);
     }

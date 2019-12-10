@@ -32,7 +32,7 @@ public class AIWork_OpenDoor : AIWork {
     public override void OnEnd()
     {
         base.OnEnd();
-        if (PreWork)
-            AIControl.Main.SetWork(PreWork);
+        //if (PreWork)
+            //AIControl.Main.SetWork(PreWork);
     }
 }

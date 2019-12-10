@@ -166,6 +166,7 @@ public class AIControl : MonoBehaviour {
     {
         if (CurrentWork != GooseWork)
         {
+            print("Heard");
             SetWork(GooseWork);
         }
     }
