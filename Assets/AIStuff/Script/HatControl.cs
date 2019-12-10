@@ -13,6 +13,11 @@ public class HatControl : MonoBehaviour {
     public AIWork ChangeHatWork;
     public float LostHatDelay = 10f;
 
+    public void Awake()
+    {
+        Main = this;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
