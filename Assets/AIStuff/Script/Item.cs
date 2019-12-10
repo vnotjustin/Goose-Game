@@ -19,6 +19,7 @@ public class Item : MonoBehaviour {
     [Space]
     public bool TriggerType;
     public int ActionIndex;
+    public bool Ignored;
     public bool Resetted;
     public bool Interacted;
     public bool Detected;

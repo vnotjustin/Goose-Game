@@ -95,7 +95,7 @@ public class AIBehaviourControl : MonoBehaviour {
 
     public void OnDetected(Item I)
     {
-        if (!Items.Contains(I))
+        if (!Items.Contains(I) && !I.Ignored)
             Items.Add(I);
     }
 
