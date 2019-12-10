@@ -10,6 +10,9 @@ public class AIWork_Goose : AIWork {
     {
         OriWork = LastWork;
         AIBehaviourControl.Main.DropItem();
+        /*
+        if (gooseControl.goose.GetComponentInChildren<GooseGrab>().hold)
+            gooseControl.goose.GetComponentInChildren<GooseGrab>().hold.GetComponent<Item>().OnDetect();*/
     }
 
     public override void OnEnd()

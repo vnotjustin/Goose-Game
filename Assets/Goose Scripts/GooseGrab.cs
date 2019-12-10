@@ -5,7 +5,7 @@ using UnityEngine;
 public class GooseGrab : MonoBehaviour
 {
     public bool isHolding;
-    private GameObject hold;
+    public GameObject hold;
     public Transform mouth;
     bool callFirst;
     Collider hbx;
@@ -76,7 +76,7 @@ public class GooseGrab : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (Input.GetMouseButtonDown(1) && other.tag == "grabable" && t2 <= 0 && callFirst == true)
+        if (Input.GetMouseButtonDown(1) && other.tag == "grabable" && t2 <= 0 && callFirst == true && (!AIControl.Main.CurrentItem || other.gameObject != AIControl.Main.CurrentItem.gameObject))
         {
             callFirst = false;
             hold = other.gameObject;
