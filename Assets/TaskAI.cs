@@ -26,7 +26,7 @@ public class TaskAI : MonoBehaviour
             
     void Update()
     {
-        CheckingTasks();
+        CheckingTasks(); //calling the function CheckingTasks 
     }
 
     public void CheckingTasks() //function for checking the tasks to play animation 
@@ -72,6 +72,8 @@ public class TaskAI : MonoBehaviour
             Debug.Log("strike6");
             picnica = true; 
         }
+
+        // Zitta helped me with the animation code and Justin helped me set up the Bool variables. 
 
     }
 }
