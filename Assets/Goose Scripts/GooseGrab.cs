@@ -14,11 +14,15 @@ public class GooseGrab : MonoBehaviour
     int t2;
     Item it;
     gooseControl gc;
+    public GameObject keys;
+    TaskCheck tc;
     // Start is called before the first frame update
     void Start()
     {
         callFirst = true;
         gc = GetComponent<gooseControl>();
+        GameObject TaskChecker = GameObject.FindWithTag("Checker");
+        tc = TaskChecker.GetComponent<TaskCheck>();
     }
 
     // Update is called once per frame
@@ -34,6 +38,10 @@ public class GooseGrab : MonoBehaviour
         }
         if (isHolding == true)
         {
+            if(hold.gameObject == keys)
+            {
+                tc.stkey = true;
+            }
             hold.transform.position = mouth.transform.position;
             hbx = hold.GetComponent<Collider>();
             hbx.enabled = false;

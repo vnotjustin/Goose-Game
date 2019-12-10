@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TaskCheck : MonoBehaviour
 {
@@ -21,6 +22,9 @@ public class TaskCheck : MonoBehaviour
 
     void Update()
     {
-        
+        if(getin && gkwet && stkey && wehat && ralake & picnic)
+        {
+            SceneManager.LoadScene("StartScene", LoadSceneMode.Single);
+        }
     }
 }
