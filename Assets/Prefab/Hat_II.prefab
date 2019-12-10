@@ -76,6 +76,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Destination: {fileID: 1497789196287113415}
   TargetItem: {fileID: 3162671794767315466}
+  CurrentTime: 0
+  Counting: 0
   StartDelay: 0
   StartAnim: 
   RotationAnim: 0
@@ -186,6 +188,8 @@ MonoBehaviour:
   OriAssign: 0
   OriPosition: {x: 0, y: 0, z: 0}
   OriRotation: {x: 0, y: 0, z: 0}
+  ResetPosition: {x: 0, y: 0, z: 0}
+  UpdateReset: 0
   TargetPoint: {fileID: 1497789196387382203}
   HandlePoint: {fileID: 1497789195785311558}
   PickUpWork: {fileID: 1497789197036610681}
@@ -249,6 +253,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Destination: {fileID: 1497789197036610682}
   TargetItem: {fileID: 3162671794767315466}
+  CurrentTime: 0
+  Counting: 0
   StartDelay: 0
   StartAnim: 
   RotationAnim: 0

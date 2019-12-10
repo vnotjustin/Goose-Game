@@ -8,6 +8,8 @@ public class Item : MonoBehaviour {
     public bool OriAssign;
     [HideInInspector] public Vector3 OriPosition;
     [HideInInspector] public Vector3 OriRotation;
+    [HideInInspector] public Vector3 ResetPosition;
+    public bool UpdateReset = true;
     [Space]
     public GameObject TargetPoint;
     public GameObject HandlePoint;
@@ -31,6 +33,7 @@ public class Item : MonoBehaviour {
         {
             OriPosition = transform.position;
             OriRotation = transform.eulerAngles;
+            ResetPosition = transform.position;
         }
     }
 
@@ -50,6 +53,9 @@ public class Item : MonoBehaviour {
             if (AIBehaviourControl.Main.InRange(this))
                 OnDetect();
         }
+
+        if (!Interacted && !Holding && !Detected && UpdateReset && (transform.position - ResetPosition).magnitude >= 3f)
+            Interact();
     }
 
     public void FixedUpdate()
@@ -89,6 +95,7 @@ public class Item : MonoBehaviour {
             TriggerLock = true;
             Rig.useGravity = false;
         }
+        ResetPosition = transform.position;
         AIBehaviourControl.Main.OnReset(this);
     }
 

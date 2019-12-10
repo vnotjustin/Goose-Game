@@ -47,6 +47,11 @@ public class AIWork : MonoBehaviour {
         Counting = true;
     }
 
+    public virtual void OnPreEnd()
+    {
+
+    }
+
     public virtual void OnEnd()
     {
         if (NextWork)

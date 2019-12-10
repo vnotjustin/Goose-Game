@@ -43,7 +43,6 @@ public class AIControl : MonoBehaviour {
     [Space]
     public GameObject HandlePoint;
     public Item CurrentItem;
-    public HatControl HAC;
     [Space]
     public AIAnimSwitch Switch;
 
@@ -55,7 +54,6 @@ public class AIControl : MonoBehaviour {
         MoveTarget = GetPosition();
         StartCoroutine("PickUpSwitchProcess");
         StartCoroutine("ResetSwitchProcess");
-        HatControl.Main = HAC;
     }
 
     // Start is called before the first frame update
@@ -235,6 +233,7 @@ public class AIControl : MonoBehaviour {
         }
         else if (Value == AIWorkState.End && CurrentWork.EndDelay > 0)
         {
+            CurrentWork.OnPreEnd();
             RotationDisable = CurrentWork.EndRotationLock;
             SetDelay(CurrentWork.EndDelay);
             SetInstantAnim(CurrentWork.EndAnim);
@@ -320,6 +319,13 @@ public class AIControl : MonoBehaviour {
         else
         {
             SetSpeed(MT - GetPosition());
+        }
+
+        if (CurrentWork != DoorControl.Main.OpenWork)
+        {
+            Ray R = new Ray(GetPosition(), MT - GetPosition());
+            if (Physics.Raycast(R, (MT - GetPosition()).magnitude, DoorControl.Main.DoorRayCastLayer))
+                SetWork(DoorControl.Main.OpenWork);
         }
     }
 
