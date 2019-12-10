@@ -114,18 +114,22 @@ MonoBehaviour:
   OriAssign: 1
   OriPosition: {x: 0, y: 0, z: 0}
   OriRotation: {x: 0, y: 0, z: 0}
+  ResetPosition: {x: 0, y: 0, z: 0}
+  UpdateReset: 1
   TargetPoint: {fileID: 8586638860493613031}
   HandlePoint: {fileID: 8586638860589456720}
   PickUpWork: {fileID: 8586638861186944370}
   ResetWork: {fileID: 8586638861710329275}
   TriggerType: 0
   ActionIndex: 0
+  Ignored: 0
   Resetted: 0
   Interacted: 0
   Detected: 0
   Holding: 0
   HeavyAnim: 1
   TriggerLock: 0
+  KinematicLock: 0
 --- !u!1 &8586638860589456720
 GameObject:
   m_ObjectHideFlags: 0
@@ -202,6 +206,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Destination: {fileID: 8586638861186944381}
   TargetItem: {fileID: 8586638860493613050}
+  CurrentTime: 0
+  Counting: 0
   StartDelay: 0
   StartAnim: 
   RotationAnim: 0
@@ -275,6 +281,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Destination: {fileID: 8586638861710329274}
   TargetItem: {fileID: 0}
+  CurrentTime: 0
+  Counting: 0
   StartDelay: 0
   StartAnim: 
   RotationAnim: 0
@@ -369,6 +377,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6077434582127352368, guid: 423791792ad8a554199f8caae3c068f8,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: -5495902117074765545, guid: aa8509614973bab4382457096ca3836e,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 423791792ad8a554199f8caae3c068f8, type: 3}
 --- !u!4 &2515254983493047542 stripped
