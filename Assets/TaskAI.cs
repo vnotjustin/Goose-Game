@@ -15,6 +15,9 @@ public class TaskAI : MonoBehaviour
     public Animator lineAnimation;
     public Animator lineAnimation2;
     public Animator lineAnimation3;
+    public Animator lineAnimation4;
+    public Animator lineAnimation5;
+    public Animator lineAnimation6;
 
     void Start()
     {
@@ -45,25 +48,29 @@ public class TaskAI : MonoBehaviour
         if (tc.stkey == true && stkeya == false)
         {
             lineAnimation3.SetBool("stkeya", true);
+            Debug.Log("strike3");
             stkeya = true;
         }
 
         if (tc.wehat == true && wehata == false)
         {
+            lineAnimation4.SetBool("wehata", true);
+            Debug.Log("strike4");
             wehata = true; 
-            //play animation
         }
 
         if (tc.ralake == true && ralakea == false)
         {
+            lineAnimation5.SetBool("ralakea", true);
+            Debug.Log("strike4");
             ralakea = true; 
-            //play animation
         }
 
         if (tc.picnic == true && picnica == false)
         {
+            lineAnimation6.SetBool("picnica", true);
+            Debug.Log("strike6");
             picnica = true; 
-            //play animation
         }
 
     }

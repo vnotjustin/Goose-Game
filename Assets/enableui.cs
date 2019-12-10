@@ -10,7 +10,7 @@ public class enableui : MonoBehaviour
     void Start()
     {
         //todo.SetActive(false);
-        todo.GetComponentInChildren<CanvasGroup>().alpha = 0;
+        todo.GetComponentInChildren<CanvasGroup>().alpha = 0;// added to fix the line problem (it was showing up even when player didn't press tab) 
     }
 
     // Update is called once per frame
