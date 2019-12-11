@@ -28,7 +28,7 @@ public class Item : MonoBehaviour {
     public bool TriggerLock;
     public bool KinematicLock;
 
-    public void Awake()
+    public virtual void Awake()
     {
         if (OriAssign)
         {
@@ -45,7 +45,7 @@ public class Item : MonoBehaviour {
     }
 
     // Update is called once per frame
-    public void Update()
+    public virtual void Update()
     {
         PositionUpdate();
         ColliderUpdate();
