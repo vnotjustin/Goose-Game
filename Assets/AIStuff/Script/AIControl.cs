@@ -164,9 +164,10 @@ public class AIControl : MonoBehaviour {
 
     public void Heard(string Key)
     {
+        if (CurrentWork && CurrentWork.Protected)
+            return;
         if (CurrentWork != GooseWork)
         {
-            print("Heard");
             SetWork(GooseWork);
         }
     }

@@ -1444,6 +1444,7 @@ MonoBehaviour:
   EndRotationLock: 0
   NextWork: {fileID: 0}
   Interrupted: 0
+  Protected: 0
   OriWork: {fileID: 0}
 --- !u!114 &88645718
 MonoBehaviour:
@@ -3687,6 +3688,7 @@ MonoBehaviour:
   EndRotationLock: 1
   NextWork: {fileID: 0}
   Interrupted: 1
+  Protected: 0
 --- !u!1 &313127330
 GameObject:
   m_ObjectHideFlags: 0
@@ -6459,6 +6461,7 @@ MonoBehaviour:
   EndRotationLock: 1
   NextWork: {fileID: 0}
   Interrupted: 1
+  Protected: 0
 --- !u!1 &580758431
 GameObject:
   m_ObjectHideFlags: 0
@@ -17229,7 +17232,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1430219170}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -150}
+  m_LocalPosition: {x: 0, y: 0, z: -50}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2083224541}
@@ -18403,7 +18406,7 @@ PrefabInstance:
     - target: {fileID: 7784003609935923823, guid: adfd701b5b364f7498d7fa5ce4d63b00,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.87
+      value: -1.25
       objectReference: {fileID: 0}
     - target: {fileID: 7784003609935923823, guid: adfd701b5b364f7498d7fa5ce4d63b00,
         type: 3}
@@ -21575,6 +21578,7 @@ MonoBehaviour:
   EndRotationLock: 1
   NextWork: {fileID: 0}
   Interrupted: 0
+  Protected: 0
   DirectionPoint: {fileID: 2091028721}
   PreWork: {fileID: 0}
 --- !u!1 &1774690764
@@ -22112,6 +22116,7 @@ MonoBehaviour:
   EndRotationLock: 1
   NextWork: {fileID: 0}
   Interrupted: 1
+  Protected: 0
   Active: 0
 --- !u!1 &1814796476
 GameObject:
@@ -22806,6 +22811,7 @@ MonoBehaviour:
   EndRotationLock: 1
   NextWork: {fileID: 0}
   Interrupted: 1
+  Protected: 0
 --- !u!1 &1861775587
 GameObject:
   m_ObjectHideFlags: 0
@@ -25355,6 +25361,7 @@ MonoBehaviour:
   EndRotationLock: 1
   NextWork: {fileID: 0}
   Interrupted: 1
+  Protected: 0
 --- !u!1 &2036871797
 GameObject:
   m_ObjectHideFlags: 0
@@ -27112,6 +27119,7 @@ MonoBehaviour:
   EndRotationLock: 1
   NextWork: {fileID: 1497789197167507628}
   Interrupted: 0
+  Protected: 1
 --- !u!1 &1497789196692268062
 GameObject:
   m_ObjectHideFlags: 0
@@ -27255,6 +27263,7 @@ MonoBehaviour:
   EndRotationLock: 1
   NextWork: {fileID: 0}
   Interrupted: 0
+  Protected: 0
 --- !u!114 &1497789197167507629
 MonoBehaviour:
   m_ObjectHideFlags: 0
