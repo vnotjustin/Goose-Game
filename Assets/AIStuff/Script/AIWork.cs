@@ -24,6 +24,7 @@ public class AIWork : MonoBehaviour {
     [Space]
     public AIWork NextWork;
     public bool Interrupted;
+    public bool Protected;
 
     // Start is called before the first frame update
     public virtual void Start()

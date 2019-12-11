@@ -207,7 +207,7 @@ MonoBehaviour:
   Holding: 0
   HeavyAnim: 0
   TriggerLock: 1
-  KinematicLock: 1
+  KinematicLock: 0
   Points: []
 --- !u!1 &4557177566059769127
 GameObject:
@@ -408,6 +408,7 @@ MonoBehaviour:
   EndRotationLock: 1
   NextWork: {fileID: 0}
   Interrupted: 0
+  Protected: 0
 --- !u!114 &409959822782781289
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -483,6 +484,7 @@ MonoBehaviour:
   EndRotationLock: 1
   NextWork: {fileID: 162532353047202141}
   Interrupted: 0
+  Protected: 0
 --- !u!114 &1021732235295600786
 MonoBehaviour:
   m_ObjectHideFlags: 0

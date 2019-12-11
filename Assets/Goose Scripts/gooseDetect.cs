@@ -5,7 +5,7 @@ using UnityEngine;
 public class gooseDetect : MonoBehaviour
 {
     public bool inRange = false;
-    public AudioSource honk;
+    public GameObject honk;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,7 +18,8 @@ public class gooseDetect : MonoBehaviour
         transform.position = gooseControl.goose.transform.position;
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            honk.Play();
+            GameObject G = Instantiate(honk);
+            G.transform.position = transform.position;
             if (inRange == true)
             {
                 AIControl.Main.Heard("goose");
@@ -35,12 +36,10 @@ public class gooseDetect : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         inRange = true;
-        Debug.Log(inRange);
     }
 
     private void OnTriggerExit(Collider other)
     {
         inRange = false;
-        Debug.Log(inRange);
     }
 }

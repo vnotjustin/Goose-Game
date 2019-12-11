@@ -9,7 +9,7 @@ public class gooseControl : MonoBehaviour
     public Texture2D cursorTexture;
     public CursorMode cursorMode = CursorMode.Auto;
     public Vector2 hotSpot = Vector2.zero;
-    private float defaultY = 1.1f;
+    private float defaultY = 1.2f;
     public float movespeed;
     public GameObject neck;
     Animator m_Animator;
@@ -19,6 +19,7 @@ public class gooseControl : MonoBehaviour
     public static bool isBend;
     public Transform farmer;
     public static bool pptrue = false;
+    public GameObject lake;
 
     // Start is called before the first frame update
     void Start()
@@ -60,6 +61,7 @@ public class gooseControl : MonoBehaviour
                 Vector3 mDir = mouseHit.point - transform.position;
                 Quaternion mRot = Quaternion.LookRotation(mDir);
                 transform.rotation = Quaternion.Slerp(transform.rotation, mRot, 4 * Time.deltaTime);
+                transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, transform.eulerAngles.z);
             }
 
             if ((Vector3)transform.position != targetPos)
@@ -106,5 +108,18 @@ public class gooseControl : MonoBehaviour
         transform.position = Vector3.MoveTowards(transform.position, -farmer.position, movespeed * Time.deltaTime);
     }
 
-
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject == lake)
+        {
+            defaultY = .7f;
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject == lake)
+        {
+            defaultY = 1.2f;
+        }
+    }
 }
