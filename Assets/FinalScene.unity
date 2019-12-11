@@ -22111,7 +22111,7 @@ MonoBehaviour:
   EndAnim: TakeOffHat
   EndRotationLock: 1
   NextWork: {fileID: 0}
-  Interrupted: 0
+  Interrupted: 1
   Active: 0
 --- !u!1 &1814796476
 GameObject:
