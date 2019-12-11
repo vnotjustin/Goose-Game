@@ -40,6 +40,8 @@ public class AIControl : MonoBehaviour {
     public AIWork GooseWork;
     public AIWork CurrentWork;
     public AIWorkState CurrentWorkState;
+    public float HeardCoolDown;
+    public float MaxHeardCoolDown = 5f;
     [Space]
     public GameObject HandlePoint;
     public Item CurrentItem;
@@ -117,6 +119,8 @@ public class AIControl : MonoBehaviour {
                 EndWork();
         }
 
+        HeardCoolDown -= Time.deltaTime;
+
         PathFindingUpdate_Alter();
 
         if (CurrentDelay > 0)
@@ -164,11 +168,16 @@ public class AIControl : MonoBehaviour {
 
     public void Heard(string Key)
     {
+        if (HeardCoolDown > 0)
+            return;
         if (CurrentWork && CurrentWork.Protected)
+            return;
+        if (CurrentWork && CurrentWork.TargetItem && CurrentWork.TargetItem.gameObject == gooseControl.goose.GetComponentInChildren<GooseGrab>().hold)
             return;
         if (CurrentWork != GooseWork)
         {
             SetWork(GooseWork);
+            HeardCoolDown = MaxHeardCoolDown;
         }
     }
 

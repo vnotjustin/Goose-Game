@@ -23,8 +23,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5234089506310036454}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.5, y: -0.195, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -1.3322803e-15, w: 1}
+  m_LocalPosition: {x: 1.0810004, y: -0.19600044, z: -0.4939998}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5234089506533220690}
@@ -121,6 +121,7 @@ MonoBehaviour:
   ResetWork: {fileID: 5234089507464495885}
   TriggerType: 0
   ActionIndex: 0
+  Ignored: 1
   Resetted: 0
   Interacted: 0
   Detected: 0
@@ -182,10 +183,11 @@ MonoBehaviour:
   PRDelay: 0
   PRAnim: 
   EndDelay: 1.5
-  EndAnim: PickUpHeavyItem
+  EndAnim: PickUpCrate
   EndRotationLock: 1
   NextWork: {fileID: 5234089507464495885}
   Interrupted: 0
+  Protected: 0
 --- !u!114 &5234089506916174795
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -257,10 +259,11 @@ MonoBehaviour:
   PRDelay: 0
   PRAnim: 
   EndDelay: 1.5
-  EndAnim: PutDownHeavyItem
+  EndAnim: PutDownCrate
   EndRotationLock: 1
   NextWork: {fileID: 0}
   Interrupted: 0
+  Protected: 0
 --- !u!114 &5234089507464495884
 MonoBehaviour:
   m_ObjectHideFlags: 0
